@@ -1,0 +1,17 @@
+/Users/Eveline/Desktop/Hold-On/Hold On Prototype/Hold On Prototype/Temp/bin/Debug/UnityEngine.dll
+/Users/Eveline/Desktop/Hold-On/Hold On Prototype/Hold On Prototype/Temp/bin/Debug/UnityEditor.dll
+/Users/Eveline/Desktop/Hold-On/Hold On Prototype/Hold On Prototype/Temp/bin/Debug/UnityEngine.UI.dll
+/Users/Eveline/Desktop/Hold-On/Hold On Prototype/Hold On Prototype/Temp/bin/Debug/UnityEngine.Networking.dll
+/Users/Eveline/Desktop/Hold-On/Hold On Prototype/Hold On Prototype/Temp/bin/Debug/Mono.Cecil.dll
+/Users/Eveline/Desktop/Hold-On/Hold On Prototype/Hold On Prototype/Temp/bin/Debug/Unity.SerializationLogic.dll
+/Users/Eveline/Desktop/Hold-On/Hold On Prototype/Hold On Prototype/Temp/bin/Debug/Unity.DataContract.dll
+/Users/Eveline/Desktop/Hold-On/Hold On Prototype/Hold On Prototype/Temp/bin/Debug/ICSharpCode.NRefactory.dll
+/Users/Eveline/Desktop/Hold-On/Hold On Prototype/Hold On Prototype/Temp/bin/Debug/Unity.UNetWeaver.dll
+/Users/Eveline/Desktop/Hold-On/Hold On Prototype/Hold On Prototype/Temp/bin/Debug/Unity.UNetWeaver.dll.mdb
+/Users/Eveline/Desktop/Hold-On/Hold On Prototype/Hold On Prototype/Temp/bin/Debug/Unity.CecilTools.dll
+/Users/Eveline/Desktop/Hold-On/Hold On Prototype/Hold On Prototype/Temp/bin/Debug/Mono.Cecil.Pdb.dll
+/Users/Eveline/Desktop/Hold-On/Hold On Prototype/Hold On Prototype/Temp/bin/Debug/Mono.Cecil.Mdb.dll
+/Users/Eveline/Desktop/Hold-On/Hold On Prototype/Hold On Prototype/Temp/bin/Debug/Assembly-CSharp.dll.mdb
+/Users/Eveline/Desktop/Hold-On/Hold On Prototype/Hold On Prototype/Temp/bin/Debug/Assembly-CSharp.dll
+/Users/Eveline/Desktop/Hold-On/Hold On Prototype/Hold On Prototype/obj/Debug/Assembly-CSharp.dll
+/Users/Eveline/Desktop/Hold-On/Hold On Prototype/Hold On Prototype/obj/Debug/Assembly-CSharp.dll.mdb
