@@ -3,8 +3,8 @@ using System.Collections;
 
 public class EnemyAI : MonoBehaviour {
 
-	float speed = 1.1f;
-	float rotationSpeed = 1.1f;
+	public float speed = 1.1f;
+	public float rotationSpeed = 1.1f;
 
 	// Use this for initialization
 	void Start () {
