@@ -3,7 +3,7 @@ using System.Collections;
 
 public class HP : MonoBehaviour {
 
-    public int hitpoints = 2;
+    public int hitpoints = 3;
     public GameObject Friendly;
          
     void OnCollisionEnter(Collision collision) {

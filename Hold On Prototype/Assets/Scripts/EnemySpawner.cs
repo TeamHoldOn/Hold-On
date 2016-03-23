@@ -13,11 +13,10 @@ public class EnemySpawner : MonoBehaviour {
 		totalEnemies = GameObject.FindGameObjectsWithTag ("Enemy");
 		amount = totalEnemies.Length;
 
-		if (amount < 5) {
+		if (amount < 3) {
 			InvokeRepeating ("spawnEnemy", 5, 10f);
 
 		}
-
 	}
 
 	void spawnEnemy(){
