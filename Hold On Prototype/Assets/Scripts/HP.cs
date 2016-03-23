@@ -17,6 +17,8 @@ public class HP : MonoBehaviour {
            Friendly.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
            Friendly.GetComponent<Rigidbody>().useGravity = true;
            Destroy (GetComponent<flock>());
+           Friendly.tag = "Untagged";
+           Destroy (Friendly, 3);
         }        
     }
 	
