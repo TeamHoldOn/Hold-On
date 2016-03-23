@@ -1,11 +1,10 @@
 fileFormatVersion: 2
-guid: e0c045ee42b27ff46b4e0b21a53ee7d1
-timeCreated: 1457747857
+guid: 2ffefd6d3a823114cbe35e90ec2442d6
+timeCreated: 1458764087
 licenseType: Free
 MonoImporter:
   serializedVersion: 2
-  defaultReferences:
-  - friendly: {fileID: 112204, guid: 4656c2ee7d51f48acaa410138ad66745, type: 2}
+  defaultReferences: []
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
