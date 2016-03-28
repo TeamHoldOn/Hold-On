@@ -3,23 +3,22 @@ using System.Collections;
 
 public class TileSwapScript : MonoBehaviour
 {
-    bool hexhit = false;
-    public GameObject Hex;
+    bool hexHit = false;
+    public GameObject hexagon2;
 
-    void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.tag == "Hex")
-        { hexhit = true; }
-
-
-    }
-
-    void Update(){
-        if (hexhit==true) 
-        { 
-         Destroy (Hex, 3f);
-            Debug.Log("Hit the hex");
+    void OnCollisionEnter(Collision collision) {
+        if (collision.gameObject.tag == "Friendly") {
+            hexHit = true; 
         }
-
     }
+    void Update() {
+        if (hexHit == true) { 
+            Destroy (transform.child="hexagon");
+            Debug.Log("Hit the hex");
+            Instantiate(hexagon2, new Vector3(0, 0, 0), Quaternion.identity);
+            
+            hexagon2.transform.SetParent(this.transform, worldPositionStays: true);
+        }
+    }
+
 }
