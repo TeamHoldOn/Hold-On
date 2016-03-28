@@ -3,7 +3,7 @@ using System.Collections;
 
 public class PlayerHealth : MonoBehaviour
 {
-	public int startHealth = 4;
+	public int startHealth = 10;
 	public int currentHealth;
 
 	PlayerController playerMovement;
