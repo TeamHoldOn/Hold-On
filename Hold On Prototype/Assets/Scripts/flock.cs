@@ -20,7 +20,7 @@ public class flock : MonoBehaviour {
     void Update () {
       foreach (GameObject Friendly in GameObject.FindGameObjectsWithTag("Friendly")) {
            if (Friendly.tag != "Leader") {
-               GameObject Leader = (GameObject.FindWithTag("Leader"));
+               Leader = (GameObject.FindWithTag("Leader"));
                transform.position = Vector3.MoveTowards(transform.position, Leader.transform.position, Time.deltaTime);
            }
       }
