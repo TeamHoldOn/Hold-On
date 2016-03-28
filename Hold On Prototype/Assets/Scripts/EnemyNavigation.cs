@@ -5,9 +5,9 @@ public class EnemyNavigation : MonoBehaviour {
 
 	//public float targetScanTime = 5.0f;
 	public float speed = 1.5f;
-	public float rotationSpeed = 1.0f;
+//	public float rotationSpeed = 1.0f;
 	public float timer = 0f;
-	public float targetScanTime = 2.0f;
+	public float targetScanTime = 3.0f;
 	GameObject target;
 
 	// Use this for initialization
@@ -23,7 +23,7 @@ public class EnemyNavigation : MonoBehaviour {
 
 		if(timer < 0){
 			target = FindClosestFriendly (this.transform.position);
-			timer = 2;
+			timer = 3;
 		}
 
 
@@ -41,7 +41,7 @@ public class EnemyNavigation : MonoBehaviour {
 	private GameObject FindClosestFriendly(Vector3 enemyLocation){
 		GameObject closestFriendly = null;
 		float closestFriendlyDistance = Mathf.Infinity;
-		GameObject[] friendlies = GameObject.FindGameObjectsWithTag ("Friendly");
+		GameObject[] friendlies = GameObject.FindGameObjectsWithTag ("Friendly"); //& GameObject.FindGameObjectsWithTag("Leader");
 
 		foreach (GameObject friendly in friendlies) {
 			float tempDistance = Vector3.Distance (enemyLocation, friendly.transform.position);
@@ -56,17 +56,20 @@ public class EnemyNavigation : MonoBehaviour {
 	}
 
 	void OnCollisionEnter(Collision collision) {
-		if (collision.gameObject.tag == "Player") {
-			Vector3 bounceDirection = transform.position - collision.gameObject.transform.position;
-			Rigidbody enemyBody = this.GetComponent<Rigidbody> ();
-			enemyBody.velocity += bounceDirection;
-		}
 
-		if (collision.gameObject.tag == "Friendly") {
-			Vector3 bounceDirection = (transform.position - collision.gameObject.transform.position) * .75f;
+			if (collision.gameObject.tag == "Player") {
+				Vector3 bounceDirection = transform.position - collision.gameObject.transform.position;
+				Rigidbody enemyBody = this.GetComponent<Rigidbody> ();
+//				enemyBody.velocity += bounceDirection;
+				enemyBody.AddForce (bounceDirection);
+			}
+
+		if (collision.gameObject.tag == "Friendly" || collision.gameObject.tag == "Leader") {
+			Vector3 bounceDirection = (transform.position - collision.gameObject.transform.position);
 			Rigidbody enemyBody = this.GetComponent<Rigidbody> ();
-			enemyBody.velocity += bounceDirection;
+//			enemyBody.velocity += (bounceDirection);
+			enemyBody.AddForce (bounceDirection);
+
 		}
 	}
-
 }
