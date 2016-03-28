@@ -4,6 +4,7 @@ using System.Collections;
 public class flock : MonoBehaviour {
  
     private GameObject Leader;
+    public float speed = 3;
     
     void OnCollisionEnter(Collision collision) {
        if (collision.gameObject.tag == "Player") {
@@ -21,7 +22,7 @@ public class flock : MonoBehaviour {
       foreach (GameObject Friendly in GameObject.FindGameObjectsWithTag("Friendly")) {
            if (Friendly.tag != "Leader") {
                Leader = (GameObject.FindWithTag("Leader"));
-               transform.position = Vector3.MoveTowards(transform.position, Leader.transform.position, Time.deltaTime);
+               transform.position = Vector3.MoveTowards(transform.position, Leader.transform.position, (Time.deltaTime)/speed);
            }
       }
     }           
