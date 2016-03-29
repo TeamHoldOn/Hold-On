@@ -3,36 +3,30 @@ using System.Collections;
 
 public class Expel : MonoBehaviour {
 
-	public float forceAmount;
 	public GameObject player;
 	public Rigidbody rb;
+	public float distance;
+	public float forceAmount = 0;
 
 	void Awake ()
 
 	{
-		player = GameObject.FindGameObjectWithTag ("Player");
+		player = GameObject.FindWithTag("Player");
+		rb = GetComponent<Rigidbody> ();
 	}
-		
+
 	void Update()
 	{
-		bool down = Input.GetKeyDown (KeyCode.Space);
+		distance = (rb.transform.position - player.transform.position).magnitude;
+		Vector3 direction = (rb.transform.position - player.transform.position).normalized;
 
-		if (down) {
-			forceAmount = 2;
-		} else {
-			forceAmount = 0;
-		}	
+		if (Input.GetKeyDown(KeyCode.Space))
+			forceAmount = 5;    
 
-		float distance = (rb.transform.position - player.transform.position).magnitude;
-	
-		if (distance <= 4) {
-			Vector3 direction = (rb.transform.position - player.transform.position).normalized;
-			rb.AddForce(direction * forceAmount);
+		if (distance <= 4){
+			rb.AddForce (direction * forceAmount);
 		}
-			
+
 	}
-
-
-		
 
 }
