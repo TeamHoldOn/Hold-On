@@ -15,7 +15,6 @@ public class EnemySpawner : MonoBehaviour {
 
 		if (amount < 5) {
 			InvokeRepeating ("spawnEnemy", 5, 10f);
-
 		}
 
 	}
