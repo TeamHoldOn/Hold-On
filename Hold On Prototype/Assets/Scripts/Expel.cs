@@ -24,7 +24,7 @@ public class Expel : MonoBehaviour {
 			forceAmount = 5;    
 
 		if (distance <= 4){
-			rb.AddForce (direction * forceAmount);
+			rb.velocity = direction * forceAmount;
 		}
 
 	}
