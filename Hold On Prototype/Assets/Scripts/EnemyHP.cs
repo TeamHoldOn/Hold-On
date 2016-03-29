@@ -4,7 +4,6 @@ using System.Collections;
 public class EnemyHP : MonoBehaviour {
 
 	public float hitpoints = 3;
-	//public GameObject Enemy;
 
 	void OnCollisionEnter(Collision collision) {
 		if (collision.gameObject.tag == "Player") {
