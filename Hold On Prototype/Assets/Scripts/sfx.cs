@@ -12,6 +12,6 @@ public class sfx : MonoBehaviour {
 	}
 	
 	void OnCollisionEnter() {
-	    audio.PlayOneShot(bump, 1f);
+	    audio.PlayOneShot(bump, 1.5f);
 	}
 }
