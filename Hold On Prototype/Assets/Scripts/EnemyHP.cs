@@ -3,7 +3,7 @@ using System.Collections;
 
 public class EnemyHP : MonoBehaviour {
 
-	public float hitpoints = 3;
+    public float hitpoints = 3;
 
 	void OnCollisionEnter(Collision collision) {
 		if (collision.gameObject.tag == "Player") {
@@ -17,8 +17,12 @@ public class EnemyHP : MonoBehaviour {
 
 	void Update() {
 		if (hitpoints == 0) {
-			Destroy (this.gameObject);
-		}
+           this.gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
+           this.gameObject.GetComponent<Rigidbody>().useGravity = true;
+           Destroy (GetComponent<EnemyNavigation>());
+           this.gameObject.tag = "Dead";
+           Destroy (this.gameObject, 3);
+        }        
 	}
 
 
