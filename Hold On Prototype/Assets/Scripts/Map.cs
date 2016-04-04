@@ -10,7 +10,7 @@ public class Map : MonoBehaviour {
     float offset = 0.89f;
 
 
-    void Start() {
+    void Awake() {
         for (int x = 0; x < width; x=(x+2)){
             for (int z = 0; z < depth; z++)
             {
@@ -27,13 +27,5 @@ public class Map : MonoBehaviour {
               }
         }
 
-	}
-	
-
-
-
-	// Update is called once per frame
-	void Update () {
-	
 	}
 }
