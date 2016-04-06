@@ -17,12 +17,9 @@ public class TileSwapScript : MonoBehaviour
     {
         if (other.gameObject.tag == "Dead")
         {
-            hexHit = true;
-            deathHex = true;
-            Debug.Log("Hit the hex");
-
-            if (hexHit == true)
-            {
+            hexHit = true;   
+            if(hexHit && !deathHex) 
+            { 
                 hexagon = this.gameObject.transform.FindChild("Hexagon").gameObject;
                 Destroy(hexagon);
 
