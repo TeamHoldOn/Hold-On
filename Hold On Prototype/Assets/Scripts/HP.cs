@@ -12,13 +12,17 @@ public class HP : MonoBehaviour {
        }
     }
     
+    void Death() {
+        Friendly.SetActive(false);
+    }
+    
     void Update() {
         if (hitpoints == 0) {
            Friendly.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
            Friendly.GetComponent<Rigidbody>().useGravity = true;
            Destroy (GetComponent<flock>());
            Friendly.tag = "Dead";
-           Destroy (Friendly, 3);
+           Invoke("Death", 3);
         }        
     }
 	
