@@ -26,6 +26,6 @@ public class Map : MonoBehaviour {
                 hex_obj.transform.SetParent(this.transform, worldPositionStays:false);
               }
         }
-
-	}
+        NearestHexFinder.allInstantiated = true;
+    }
 }
