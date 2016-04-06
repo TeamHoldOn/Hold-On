@@ -4,6 +4,7 @@ using System.Collections;
 public class TileSwapScript : MonoBehaviour
 {
     bool hexHit = false;
+    bool deathHex = false;
     public GameObject hexagon2;
     public GameObject hexagon3;
     public GameObject hexagon4;
@@ -17,6 +18,7 @@ public class TileSwapScript : MonoBehaviour
         if (other.gameObject.tag == "Dead")
         {
             hexHit = true;
+            deathHex = true;
             Debug.Log("Hit the hex");
 
             if (hexHit == true)
@@ -27,7 +29,7 @@ public class TileSwapScript : MonoBehaviour
                 GameObject hex_obj2 = (GameObject)Instantiate(hexagon2, new Vector3(0, 0, 0), Quaternion.EulerAngles(4.712f, 0, 0));
                 hex_obj2.transform.SetParent(this.transform, worldPositionStays: false);
 
-                nearestHexFinder = GetComponent<NearestHexFinder>();
+                nearestHexFinder = this.GetComponent<NearestHexFinder>();
                 toChange = nearestHexFinder.nearestHexes;
 
                 for (int i = 0; i < toChange.Length; i++)
@@ -36,12 +38,7 @@ public class TileSwapScript : MonoBehaviour
                     otherHexes = toChange[i].gameObject;
                     GameObject otherChild = otherHexes.transform.GetChild(1).gameObject;
                     GameObject newHex = hexagon3;
-
-
-                    if (otherHexes.GetComponent<TileSwapScript>().hexHit == true)
-                    {
-                        break;
-                    }
+                    
                     if (otherHexes.GetComponent<TileSwapScript>().hexHit == false)
                     {
 
