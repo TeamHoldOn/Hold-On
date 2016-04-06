@@ -24,7 +24,7 @@ public class TileSwapScript : MonoBehaviour
                 hexagon = this.gameObject.transform.GetChild(0).gameObject;
                 Destroy(hexagon);
 
-                GameObject hex_obj2 = (GameObject)Instantiate(hexagon2, new Vector3(0, 0, 0), Quaternion.EulerAngles(4.712f, 0, 0));
+                GameObject hex_obj2 = (GameObject)Instantiate(hexagon2, new Vector3(0, 0, 0), Quaternion.identity);
                 hex_obj2.transform.SetParent(this.transform, worldPositionStays: false);
 
                 deathHex = true;
@@ -44,7 +44,7 @@ public class TileSwapScript : MonoBehaviour
 
                         Destroy(otherChild);
 
-                        GameObject hex_obj3 = (GameObject)Instantiate(newHex, new Vector3(0, 0, 0), Quaternion.EulerAngles(4.712f, 0, 0));
+                        GameObject hex_obj3 = (GameObject)Instantiate(newHex, new Vector3(0, 0, 0), Quaternion.identity);
                         hex_obj3.transform.SetParent(otherHexes.transform, worldPositionStays: false);
                     }
 
@@ -61,7 +61,7 @@ public class TileSwapScript : MonoBehaviour
 
                         Destroy(otherChild);
 
-                        GameObject hex_obj3 = (GameObject)Instantiate(newHex, new Vector3(0, 0, 0), Quaternion.EulerAngles(4.712f, 0, 0));
+                        GameObject hex_obj3 = (GameObject)Instantiate(newHex, new Vector3(0, 0, 0), Quaternion.identity);
                         hex_obj3.transform.SetParent(otherHexes.transform, worldPositionStays: false);
                     }
 
