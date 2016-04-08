@@ -3,6 +3,8 @@ using System.Collections;
 
 public class PlayerControllerPhysics : MonoBehaviour {
 
+	public Transform orientationReference;
+
 	public float speed;
 
 	private Rigidbody rb;
@@ -10,19 +12,16 @@ public class PlayerControllerPhysics : MonoBehaviour {
 	void Start(){
 
 		rb = GetComponent<Rigidbody>();
-
 	}
 
 	void FixedUpdate(){
 
-		Vector3 inputDirection = new Vector3 (Input.GetAxis ("Horizontal"), 0.0f, Input.GetAxis ("Vertical"));
+		float moveX = Input.GetAxis("Horizontal");
+		float moveZ = Input.GetAxis ("Vertical");
 
-		//keeps the ball from accelerating too much
-		if (inputDirection.sqrMagnitude > 1) {
-			inputDirection = inputDirection.normalized;
-		}
+		rb.AddForce (moveX * orientationReference.right * speed);
+		rb.AddForce (moveZ * orientationReference.forward * speed);
 
-		rb.AddForce (inputDirection * speed);
+		//		rb.AddForce (inputDirection.normalized * speed);
 	}
-
 }

@@ -3,17 +3,27 @@ using System.Collections;
 
 public class CameraController : MonoBehaviour {
 
-	public GameObject player;
-	private Vector3 offset;
+	public Transform lookAt;
+	public Transform camTransform;
 
-	// Use this for initialization
-	void Start () {
-		offset = transform.position - player.transform.position;
-	
+//	private Camera cam;
+
+	private float distance = 10.0f;
+	private float currentX = 0f;
+
+	private void Start(){
+		camTransform = transform;
+//		cam = Camera.main;
 	}
-	
-	void LateUpdate () {
-		transform.position = player.transform.position + offset;
-	
+
+	private void Update(){
+		currentX -= Input.GetAxis ("RightJoystickX");
+	}
+
+	private void LateUpdate(){
+		Vector3 dir = new Vector3 (0, 15f, -distance);
+		Quaternion rotation = Quaternion.Euler (lookAt.transform.position.y, currentX, 0);
+		camTransform.position = lookAt.position + rotation * dir;
+		camTransform.LookAt (lookAt.position);
 	}
 }
