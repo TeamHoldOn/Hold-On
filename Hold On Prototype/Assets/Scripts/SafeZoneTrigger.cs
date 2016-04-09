@@ -11,7 +11,7 @@ public class SafeZoneTrigger : MonoBehaviour {
         if (other.gameObject.tag == "Player")
         {
             safeOut = false;
-           Invoke("HaveILeft", 10);
+           Invoke("HaveILeft", 5);
         }
     }
 
@@ -21,7 +21,7 @@ public class SafeZoneTrigger : MonoBehaviour {
             }
         }
 
-    // Update is called once per frame
+  
     void HaveILeft()
     {
      
@@ -29,7 +29,7 @@ public class SafeZoneTrigger : MonoBehaviour {
             {
                 Debug.Log("Taking Control");
 
-                player.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionZ |
+                this.player.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionZ |
                 RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
               
             }
