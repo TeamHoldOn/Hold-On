@@ -6,12 +6,12 @@ public class PlayerHealth : MonoBehaviour
 	public int startHealth = 10;
 	public int currentHealth;
 
-	PlayerController playerMovement;
+	PlayerControllerPhysics playerMovement;
 	public GameObject Enemy;
 
 	void Awake ()
 	{
-		playerMovement = GetComponent<PlayerController> ();
+		playerMovement = GetComponent<PlayerControllerPhysics> ();
 		currentHealth = startHealth;
 	}
 

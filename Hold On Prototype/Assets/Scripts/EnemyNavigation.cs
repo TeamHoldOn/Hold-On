@@ -5,7 +5,7 @@ using System.Collections.Generic;
 public class EnemyNavigation : MonoBehaviour {
 
 	public float rotationSpeed = 1.0f;
-	public float speed = 1.25f;
+	public float speed = 1.0f;
 	public float timer = 0f;
 	public float targetScanTime = 3.0f;
 	public GameObject target;
@@ -17,7 +17,6 @@ public class EnemyNavigation : MonoBehaviour {
 		timer = targetScanTime;
 	}
 
-	// Update is called once per frame
 	void FixedUpdate () {
 
 		timer -= Time.fixedDeltaTime;
@@ -28,11 +27,6 @@ public class EnemyNavigation : MonoBehaviour {
 		}
 
 		Rigidbody enemyBody = this.GetComponent<Rigidbody> ();
-
-//		transform.position = Vector3.MoveTowards (transform.position, target.transform.position, move);
-		
-	    //make the enemy "look" at the target"
-//		transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(target.transform.position - transform.position), rotationSpeed * Time.deltaTime);
 
 		Vector3 targetDirection =  target.transform.position - transform.position;
 
@@ -97,6 +91,4 @@ public class EnemyNavigation : MonoBehaviour {
 			}
 		}
 	}
-		
-
 }
