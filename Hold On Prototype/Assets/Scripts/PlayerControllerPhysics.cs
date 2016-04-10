@@ -14,7 +14,8 @@ public class PlayerControllerPhysics : MonoBehaviour {
 		rb = GetComponent<Rigidbody>();
 	}
 
-	void FixedUpdate(){
+
+    void FixedUpdate(){
 
 		float moveX = Input.GetAxis("Horizontal");
 		float moveZ = Input.GetAxis ("Vertical");
@@ -23,5 +24,5 @@ public class PlayerControllerPhysics : MonoBehaviour {
 		rb.AddForce (moveZ * orientationReference.forward * speed);
 
 		//		rb.AddForce (inputDirection.normalized * speed);
-	}
+    }
 }
