@@ -1,12 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class EntitySpeed : MonoBehaviour
+public class PlayerSpeed : MonoBehaviour
 {
 
     //PlayerControllerPhysics playerControllerPhysics;
     HexSpeed hexSpeed;
-    public Rigidbody entityRigidbody;
+    public Rigidbody playerRigidbody;
     //public int checkedSpeed;
     public float checkedDrag;
 
@@ -22,7 +22,7 @@ public class EntitySpeed : MonoBehaviour
             // playerControllerPhysics.speed = checkedSpeed;
 
             checkedDrag = hexSpeed.envtDrag;
-            this.entityRigidbody.drag = checkedDrag;
+            this.playerRigidbody.drag = checkedDrag;
         }
     }
 }
