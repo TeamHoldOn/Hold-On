@@ -54,24 +54,35 @@ public class EnemyNavigation : MonoBehaviour {
 		return closestFriendly;
 	}
 
-	void OnCollisionEnter(Collision collision) {
+    void OnCollisionEnter(Collision collision) {
 
-		float bounceSpeed;
+        float bounceSpeed;
 
-		if (collision.gameObject.tag == "Player") {
-			Vector3 bounceDirection = transform.position - collision.gameObject.transform.position;
-			Rigidbody enemyBody = this.GetComponent<Rigidbody> ();
-			bounceSpeed = 3f;
-			enemyBody.velocity += (bounceDirection * bounceSpeed);
-		}
+        if (collision.gameObject.tag == "Player") {
+            Vector3 bounceDirection = transform.position - collision.gameObject.transform.position;
+            Rigidbody enemyBody = this.GetComponent<Rigidbody>();
+            bounceSpeed = 3f;
+            enemyBody.velocity += (bounceDirection * bounceSpeed);
+        }
 
-		if (collision.gameObject.tag == "Friendly" || collision.gameObject.tag == "Leader") {
-			Vector3 bounceDirection = (transform.position - collision.gameObject.transform.position);
-			Rigidbody enemyBody = this.GetComponent<Rigidbody> ();
-			bounceSpeed = 2f;
-			enemyBody.velocity += (bounceDirection * bounceSpeed);
-		}
-	}
+        if (collision.gameObject.tag == "Friendly" || collision.gameObject.tag == "Leader") {
+            Vector3 bounceDirection = (transform.position - collision.gameObject.transform.position);
+            Rigidbody enemyBody = this.GetComponent<Rigidbody>();
+            bounceSpeed = 2f;
+            enemyBody.velocity += (bounceDirection * bounceSpeed);
+        }
+    }
+    void OnTriggerEnter(Collider other) {
+        float bounceSpeed;
+    
+     if (other.gameObject.tag == "SafeZone")
+        {
+            Vector3 bounceDirection = transform.position - other.gameObject.transform.position;
+            Rigidbody enemyBody = this.GetComponent<Rigidbody>();
+            bounceSpeed = -1f;
+            enemyBody.velocity += (bounceDirection * bounceSpeed);
+        }
+    }
 
 	void enemyCollisionAversion(){
 
