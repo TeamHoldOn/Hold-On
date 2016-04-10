@@ -5,6 +5,7 @@ public class SafeZoneTrigger : MonoBehaviour {
 
    public static bool safeOut = true;
    public GameObject player;
+    public static bool endGame = false;
    
    void OnTriggerEnter(Collider other)
     {
@@ -31,7 +32,9 @@ public class SafeZoneTrigger : MonoBehaviour {
 
                 this.player.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionZ |
                 RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
-              
+
+            endGame = true;
+       
             }
      }
 }

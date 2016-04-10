@@ -5,7 +5,7 @@ using System.Collections.Generic;
 public class EnemyNavigation : MonoBehaviour {
 
 	public float rotationSpeed = 1.0f;
-	public float speed = 1.0f;
+	public float speed = .5f;
 	public float timer = 0f;
 	public float targetScanTime = 3.0f;
 	public GameObject target;
@@ -61,14 +61,14 @@ public class EnemyNavigation : MonoBehaviour {
 		if (collision.gameObject.tag == "Player") {
 			Vector3 bounceDirection = transform.position - collision.gameObject.transform.position;
 			Rigidbody enemyBody = this.GetComponent<Rigidbody> ();
-			bounceSpeed = 2f;
+			bounceSpeed = 3f;
 			enemyBody.velocity += (bounceDirection * bounceSpeed);
 		}
 
 		if (collision.gameObject.tag == "Friendly" || collision.gameObject.tag == "Leader") {
 			Vector3 bounceDirection = (transform.position - collision.gameObject.transform.position);
 			Rigidbody enemyBody = this.GetComponent<Rigidbody> ();
-			bounceSpeed = 1.5f;
+			bounceSpeed = 2f;
 			enemyBody.velocity += (bounceDirection * bounceSpeed);
 		}
 	}
