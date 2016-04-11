@@ -45,13 +45,11 @@ public class flock : MonoBehaviour {
     
     void MinimumDistance() {
         float minDist = 2f;
-        Vector3 selfPosition = transform.position;
-        
-        
+                
         foreach (GameObject Friendly in Friendlies) {
-            float currentDist = Vector3.Distance (selfPosition, Friendly.transform.position);
+            float currentDist = Vector3.Distance (transform.position, Friendly.transform.position);
             if (currentDist < minDist) {
-                Vector3 repulse = Friendly.transform.position - selfPosition;
+                Vector3 repulse = Friendly.transform.position - transform.position;
                 Rigidbody avoid = Friendly.GetComponent<Rigidbody>();
                 avoid.velocity += repulse.normalized * 0.3f; 
             }
