@@ -29,7 +29,6 @@ public class flock : MonoBehaviour {
     
     void FixedUpdate() {
         float minDist = 2f;
-<<<<<<< HEAD
         Vector3 selfPosition = transform.position;  
         if (Leaders.Length != 0) {
             foreach (GameObject Friendly in Friendlies) {
@@ -48,19 +47,10 @@ public class flock : MonoBehaviour {
                     if (currentDist < minDist) {
                         Vector3 repulse = Friendly.transform.position - selfPosition;
                         Rigidbody avoid = Friendly.GetComponent<Rigidbody>();
-                        avoid.velocity += repulse.normalized * 0.3f; 
+                        avoid.velocity += repulse.normalized * 0.3f;
                     }
                 }
-=======
-                
-        foreach (GameObject Friendly in Friendlies) {
-            float currentDist = Vector3.Distance (transform.position, Friendly.transform.position);
-            if (currentDist < minDist) {
-                Vector3 repulse = Friendly.transform.position - transform.position;
-                Rigidbody avoid = Friendly.GetComponent<Rigidbody>();
-                avoid.velocity += repulse.normalized * 0.3f; 
->>>>>>> refs/remotes/origin/master
             }
         }
     }
-}
+}   
