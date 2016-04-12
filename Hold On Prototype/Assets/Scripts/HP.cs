@@ -16,10 +16,7 @@ public class HP : MonoBehaviour {
     void Update() {
         if (hitpoints == 1) {
            Destroy (GetComponent<flock>());
-           //transform.position = Vector3.MoveTowards(transform.position, SafeArea.transform.position, Time.deltaTime);
-           
-           //Flee();
-            
+           Fleeing();
            } 
                 
         if (hitpoints == 0) {
@@ -29,8 +26,16 @@ public class HP : MonoBehaviour {
            Invoke("Death", 3);
         }
     }
-        
-    //void Flee() {}
+    
+    void Fleeing() {
+        Vector3 fleeTo = SafeArea.transform.position - transform.position;
+        Rigidbody flee = this.Friendly.GetComponent<Rigidbody>();
+        flee.velocity += fleeTo.normalized;
+        float speedLimit = flee.velocity.sqrMagnitude;
+        if (speedLimit > 3f) {
+            flee.velocity += -(flee.velocity.normalized); 
+           } 
+    }
         
     void Death() {
         Friendly.SetActive(false);
