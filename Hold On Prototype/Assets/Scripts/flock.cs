@@ -25,6 +25,7 @@ public class flock : MonoBehaviour {
     
     void Update() {
         Leaders = GameObject.FindGameObjectsWithTag("Leader");
+        Leader = GameObject.FindWithTag("Leader");
     }
     
     void FixedUpdate() {
@@ -32,8 +33,7 @@ public class flock : MonoBehaviour {
         Vector3 selfPosition = transform.position;  
         if (Leaders.Length != 0) {
             foreach (GameObject Friendly in Friendlies) {
-                if (Friendly != GameObject.FindWithTag("Leader")) {
-                    Leader = (GameObject.FindWithTag("Leader"));
+                if (Friendly != Leader) {
                     Vector3 followLeader = Leader.transform.position - Friendly.transform.position;
                     Rigidbody follow = GetComponent<Rigidbody>();
                     follow.velocity += followLeader.normalized * 0.1f;
@@ -53,4 +53,4 @@ public class flock : MonoBehaviour {
             }
         }
     }
-}   
+}
