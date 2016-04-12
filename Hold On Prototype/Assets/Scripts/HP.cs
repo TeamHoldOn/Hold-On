@@ -5,8 +5,8 @@ public class HP : MonoBehaviour {
 
     public int hitpoints = 2;
     public GameObject Friendly;
-    public GameObject Enemy;
-         
+    public GameObject SafeArea;
+     
     void OnCollisionEnter(Collision collision) {
        if (collision.gameObject.tag == "Enemy") {
            hitpoints--;
@@ -16,8 +16,7 @@ public class HP : MonoBehaviour {
     void Update() {
         if (hitpoints == 1) {
            Destroy (GetComponent<flock>());
-           Flee();
-            
+           Fleeing();
            } 
                 
         if (hitpoints == 0) {
@@ -27,17 +26,16 @@ public class HP : MonoBehaviour {
            Invoke("Death", 3);
         }
     }
-        
-    void Flee() {
-        float minDist = 2f;
-        Vector3 selfPosition = transform.position;
-        float currentDist = Vector3.Distance (selfPosition, Enemy.transform.position);
-            if (currentDist < minDist) {
-                Vector3 repulse = Friendly.transform.position - selfPosition;
-                Rigidbody avoid = Friendly.GetComponent<Rigidbody>();
-                avoid.velocity += repulse.normalized * 0.3f; 
-            }
-        }
+    
+    void Fleeing() {
+        Vector3 fleeTo = SafeArea.transform.position - transform.position;
+        Rigidbody flee = this.Friendly.GetComponent<Rigidbody>();
+        flee.velocity += fleeTo.normalized;
+        float speedLimit = flee.velocity.sqrMagnitude;
+        if (speedLimit > 3f) {
+            flee.velocity += -(flee.velocity.normalized); 
+           } 
+    }
         
     void Death() {
         Friendly.SetActive(false);
