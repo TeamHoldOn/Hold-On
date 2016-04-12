@@ -30,7 +30,12 @@ public class protesterFlocking : MonoBehaviour {
             if (flockSize > 0) {
                 center = center/flockSize + transform.position;
                 Rigidbody rb = Protester.GetComponent<Rigidbody>();
-                rb.velocity = (center.normalized + avoid.normalized) * 2f;
+                rb.velocity = (center.normalized + avoid.normalized) * 1f;
+                
+                float speedLimit = rb.velocity.sqrMagnitude;
+                if (speedLimit > 1f) {
+                    rb.velocity += -(rb.velocity.normalized);
+                }
             }
         }
     }
