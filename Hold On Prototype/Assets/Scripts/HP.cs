@@ -19,7 +19,7 @@ public class HP : MonoBehaviour {
            Fleeing();
            } 
                 
-        if (hitpoints == 0) {
+        if (hitpoints <= 0) {
            Friendly.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
            Friendly.GetComponent<Rigidbody>().useGravity = true;
            Friendly.tag = "Dead";
