@@ -10,7 +10,6 @@ public class cinematic : MonoBehaviour {
 	void Awake () {
         
         firstProtesters = GameObject.FindGameObjectsWithTag("firstProtester");
-        Rigidbody fpRB = firstProtester.GetComponent<Rigidbody>();
 	}
 	
 	void Update () {
