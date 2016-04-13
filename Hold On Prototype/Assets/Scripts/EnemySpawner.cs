@@ -13,16 +13,16 @@ public class EnemySpawner : MonoBehaviour {
 		totalEnemies = GameObject.FindGameObjectsWithTag ("Enemy");
 		amount = totalEnemies.Length;
 
-		if (amount < 5) {
-			InvokeRepeating ("spawnEnemy", 5, 10f);
+		if (amount < 4) {
+			InvokeRepeating ("spawnEnemy", 5, 12f);
 		}
 
 	}
 
 	void spawnEnemy(){
-		spawnPoint.x = Random.Range(-15, 15);
+		spawnPoint.x = Random.Range(-20, 20);
 		spawnPoint.y = 1.5f;
-		spawnPoint.z = Random.Range(-5, 15);
+		spawnPoint.z = Random.Range(-10, 20);
 
 		Instantiate(enemy, spawnPoint, Quaternion.identity);
 		CancelInvoke();
