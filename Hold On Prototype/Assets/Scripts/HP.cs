@@ -30,8 +30,8 @@ public class HP : MonoBehaviour {
            Friendly.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
            Friendly.GetComponent<Rigidbody>().useGravity = true;
            Friendly.tag = "Dead";
+           Invoke("DeathSound", 2);
            Invoke("Death", 3);
-           audio.PlayOneShot(death, 1.5f);
         }
     }
     
@@ -43,6 +43,11 @@ public class HP : MonoBehaviour {
         if (speedLimit > 3f) {
             flee.velocity += -(flee.velocity.normalized); 
            } 
+    }
+    
+    void DeathSound() {
+        audio.PlayOneShot(death, 1.5f);
+
     }
         
     void Death() {
