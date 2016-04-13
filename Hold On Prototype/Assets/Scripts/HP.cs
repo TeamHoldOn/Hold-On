@@ -1,12 +1,19 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+[RequireComponent(typeof(AudioSource))]
 public class HP : MonoBehaviour {
 
     public int hitpoints = 2;
     public GameObject Friendly;
     public GameObject SafeArea;
+    public AudioClip death;
+    AudioSource audio;
      
+    void Start() {
+	    audio = GetComponent<AudioSource>();
+	}
+    
     void OnCollisionEnter(Collision collision) {
        if (collision.gameObject.tag == "Enemy") {
            hitpoints--;
@@ -17,13 +24,14 @@ public class HP : MonoBehaviour {
         if (hitpoints == 1) {
            Destroy (GetComponent<flock>());
            Fleeing();
-           } 
+        }
                 
         if (hitpoints <= 0) {
            Friendly.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
            Friendly.GetComponent<Rigidbody>().useGravity = true;
            Friendly.tag = "Dead";
            Invoke("Death", 3);
+           audio.PlayOneShot(death, 1.5f);
         }
     }
     
