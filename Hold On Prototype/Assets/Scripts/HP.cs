@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+[RequireComponent(typeof(AudioSource))]
 public class HP : MonoBehaviour {
 
     public int hitpoints = 2;
@@ -17,9 +18,9 @@ public class HP : MonoBehaviour {
         if (hitpoints == 1) {
            Destroy (GetComponent<flock>());
            Fleeing();
-           } 
+        }
                 
-        if (hitpoints == 0) {
+        if (hitpoints <= 0) {
            Friendly.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
            Friendly.GetComponent<Rigidbody>().useGravity = true;
            Friendly.tag = "Dead";
@@ -36,7 +37,7 @@ public class HP : MonoBehaviour {
             flee.velocity += -(flee.velocity.normalized); 
            } 
     }
-        
+         
     void Death() {
         Friendly.SetActive(false);
     }

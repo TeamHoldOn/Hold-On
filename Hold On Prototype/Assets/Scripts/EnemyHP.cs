@@ -16,7 +16,7 @@ public class EnemyHP : MonoBehaviour {
 	}
 
 	void Update() {
-		if (hitpoints == 0) {
+		if (hitpoints <= 0) {
            this.gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
            this.gameObject.GetComponent<Rigidbody>().useGravity = true;
            Destroy (GetComponent<EnemyNavigation>());
