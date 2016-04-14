@@ -32,9 +32,10 @@ public class FirstEnemyController : MonoBehaviour {
 			destroyTimer = destroyTimer - Time.deltaTime;
 			if (destroyTimer < 0) {
 				Destroy (this.gameObject);
+
 				//Call the function in the ProtetScene script
-				GameObject protestSceneController = GameObject.Find("ProtestSceneController");
-				ProtestScene ps = protestSceneController.GetComponent<ProtestScene>();
+				GameObject protestSceneManager = GameObject.Find("ProtestSceneManager");
+				ProtestScene ps = protestSceneManager.GetComponent<ProtestScene>();
 				ps.beginProtest();
 			}
 		}
