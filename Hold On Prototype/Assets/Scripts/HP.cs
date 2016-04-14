@@ -7,13 +7,7 @@ public class HP : MonoBehaviour {
     public int hitpoints = 2;
     public GameObject Friendly;
     public GameObject SafeArea;
-    public AudioClip death;
-    AudioSource audio;
      
-    void Start() {
-	    audio = GetComponent<AudioSource>();
-	}
-    
     void OnCollisionEnter(Collision collision) {
        if (collision.gameObject.tag == "Enemy") {
            hitpoints--;
@@ -30,7 +24,6 @@ public class HP : MonoBehaviour {
            Friendly.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
            Friendly.GetComponent<Rigidbody>().useGravity = true;
            Friendly.tag = "Dead";
-           Invoke("DeathSound", 2);
            Invoke("Death", 3);
         }
     }
@@ -44,12 +37,7 @@ public class HP : MonoBehaviour {
             flee.velocity += -(flee.velocity.normalized); 
            } 
     }
-    
-    void DeathSound() {
-        audio.PlayOneShot(death, 1.5f);
-
-    }
-        
+         
     void Death() {
         Friendly.SetActive(false);
     }
