@@ -12,20 +12,24 @@ public class EndScriptSelect : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        if(fled) 
+        if(GameStateManager.fled) 
         {
          finalMessage = this.GetComponent<Image>();
             finalMessage.sprite = fledImage;
         }
-        if (died)
+        if (GameStateManager.died)
         {
             finalMessage = this.GetComponent<Image>();
             finalMessage.sprite = diedImage;
 
         }
-        if (lost)
+        if (GameStateManager.lost)
         {
 
+            finalMessage = this.GetComponent<Image>();
+            finalMessage.sprite = lostImage;
+        }
+        else {
             finalMessage = this.GetComponent<Image>();
             finalMessage.sprite = lostImage;
         }
