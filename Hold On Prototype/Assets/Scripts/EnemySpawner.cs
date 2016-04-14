@@ -16,6 +16,7 @@ public class EnemySpawner : MonoBehaviour {
 		if (amount < 4) {
 			InvokeRepeating ("spawnEnemy", 5, 12f);
 		}
+
 	}
 
 	void spawnEnemy(){
@@ -26,4 +27,5 @@ public class EnemySpawner : MonoBehaviour {
 		Instantiate(enemy, spawnPoint, Quaternion.identity);
 		CancelInvoke();
 	}
+
 }

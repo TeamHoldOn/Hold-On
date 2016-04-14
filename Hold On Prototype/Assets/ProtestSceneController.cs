@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class ProtestScene : MonoBehaviour {
+public class ProtestSceneController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
