@@ -1,20 +1,36 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
-public class GameStateManager : MonoBehaviour {
+public class GameStateManager : MonoBehaviour
+{
 
     public static bool fled = false;
     public static bool died = false;
     public static bool lost = false;
 
 
-// Use this for initialization
-    void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+    // Update is called once per frame
+    void Update()
+    {
+
+        if (fled | died | lost)
+        {
+
+            SceneManager.LoadScene("Ending", LoadSceneMode.Single);
+            ResetEndVariables();
+        }
+
+    }
+
+
+    public void ResetEndVariables()
+    {
+        fled = false;
+        died = false;
+        lost = false;
+
+    }
+
+
 }
