@@ -6,15 +6,10 @@ public class mainMusic : MonoBehaviour {
 
 	public AudioClip Music;
 	AudioSource audio;
-    public GameObject trigger;
     
-    void Awake() {
+    
+    void Start() {
 	    audio = GetComponent<AudioSource>();
+        audio.PlayOneShot(Music, 1);
 	}
-    
-    void OnTriggerExit(Collider player) {
-        if (player.gameObject.CompareTag("Player")) {
-            audio.PlayOneShot(Music, 1);
-        }
-    }
 }
