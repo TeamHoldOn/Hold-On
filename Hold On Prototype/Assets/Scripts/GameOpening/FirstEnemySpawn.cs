@@ -8,7 +8,7 @@ public class FirstEnemySpawn : MonoBehaviour {
 
 	void Start () {
 
-		Invoke ("SpawnFirstEnemy", 10f);
+		Invoke ("SpawnFirstEnemy", 65f);
 	}
 
 	void SpawnFirstEnemy(){

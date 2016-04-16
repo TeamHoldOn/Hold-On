@@ -4,17 +4,14 @@ using System.Collections;
 public class PlayerControllerPhysics : MonoBehaviour {
 
 	public Transform orientationReference;
-
 	public float speed;
-
 	private Rigidbody rb;
 
 	void Start(){
 
 		rb = GetComponent<Rigidbody>();
 	}
-
-
+		
     void FixedUpdate(){
 
 		float moveX = Input.GetAxis("Horizontal");
