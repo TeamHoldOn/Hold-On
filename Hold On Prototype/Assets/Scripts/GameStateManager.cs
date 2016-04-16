@@ -21,7 +21,7 @@ public class GameStateManager : MonoBehaviour
 
             if (OnEndGame.cameraPanned)
             {
-                Invoke("InitiateEnding", 5);
+                Invoke("InitiateEnding", 3);
             }
         }
 
