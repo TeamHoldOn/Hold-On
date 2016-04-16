@@ -24,6 +24,7 @@ public class PlayerHealth : MonoBehaviour
 	void Update(){
 		if (currentHealth <= 0) {
 			playerMovement.enabled = false;
-		}
+            GameStateManager.died = true;
+        }
 	}
 }
