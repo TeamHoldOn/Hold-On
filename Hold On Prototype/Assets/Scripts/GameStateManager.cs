@@ -8,8 +8,8 @@ public class GameStateManager : MonoBehaviour
     public static bool fled = false;
     public static bool died = false;
     public static bool lost = false;
-    OnEndGame onEndGame;
-    Camera mainCamera;
+    public OnEndGame onEndGame;
+    public Camera mainCamera;
     // Update is called once per frame
     void Update()
     {
@@ -21,8 +21,7 @@ public class GameStateManager : MonoBehaviour
 
             if (OnEndGame.cameraPanned)
             {
-                SceneManager.LoadScene("Ending", LoadSceneMode.Single);
-                ResetEndVariables();
+                Invoke("InitiateEnding", 5);
             }
         }
 
@@ -37,5 +36,8 @@ public class GameStateManager : MonoBehaviour
 
     }
 
-
+    void InitiateEnding() {
+        SceneManager.LoadScene("Ending", LoadSceneMode.Single);
+        ResetEndVariables();
+    }
 }
