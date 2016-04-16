@@ -5,7 +5,7 @@ public class Fade : MonoBehaviour {
 
 	void Update(){
 
-		Invoke ("fadeOut", 2);
+		Invoke ("fadeOut", 50);
 	}
 
 	void fadeOut(){
@@ -15,9 +15,5 @@ public class Fade : MonoBehaviour {
 		if (canvasGroup.alpha > 0) {
 			canvasGroup.alpha -= Time.deltaTime / 10;
 		}
-
-		//		if (canvasGroup.alpha == 0) {
-		//			Destroy (this.gameObject);
-		//		}
 	}
 }

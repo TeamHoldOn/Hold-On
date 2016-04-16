@@ -7,18 +7,27 @@ public class ProtestScene : MonoBehaviour {
 	public Camera protestCamera;
 	public GameObject enemy;
 	private Vector3 spawnPoint;
-	public float protestTimer = 1f;
+	public float protestTimer = 10f;
+	public GameObject enemySpawner;
 
 	void Start() {
 		mainCamera.enabled = true;
 		protestCamera.enabled = false;
 	}
 
+	public void Update(){
+		protestTimer -= Time.deltaTime / 50;
+
+		if (protestTimer <= 0) {
+			mainCamera.enabled = true;
+			protestCamera.enabled = false;
+			enemySpawner.SetActive (true);
+		}
+	}
+
 	public void beginProtest(){
 		mainCamera.enabled = false;
 		protestCamera.enabled = true;
-		// set protesters to active 
-		// spawn enemies near protestors
 		Invoke("spawnEnemies", 8);
 
 		protestTimer -= Time.deltaTime;
@@ -28,12 +37,6 @@ public class ProtestScene : MonoBehaviour {
 		}
 	}
 
-//	public void endProtest(){
-//		protestCamera.enabled = false;
-//		mainCamera.enabled = true;
-//		CancelInvoke ();
-//	}
-
 	public void spawnEnemies(){
 		spawnPoint.x = Random.Range(-45, -55);
 		spawnPoint.y = 1.5f;
@@ -41,9 +44,6 @@ public class ProtestScene : MonoBehaviour {
 
 		Instantiate(enemy, spawnPoint, Quaternion.identity);
 		Instantiate(enemy, spawnPoint, Quaternion.identity);
-
 		CancelInvoke();
 	}
-
-
 }
