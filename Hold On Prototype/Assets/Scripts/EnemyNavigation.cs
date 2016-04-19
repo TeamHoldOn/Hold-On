@@ -68,7 +68,7 @@ public class EnemyNavigation : MonoBehaviour {
         if (collision.gameObject.tag == "Friendly" || collision.gameObject.tag == "Leader") {
             Vector3 bounceDirection = (transform.position - collision.gameObject.transform.position);
             Rigidbody enemyBody = this.GetComponent<Rigidbody>();
-            bounceSpeed = 2f;
+            bounceSpeed = 2.5f;
             enemyBody.velocity += (bounceDirection * bounceSpeed);
         }
     }
@@ -79,7 +79,7 @@ public class EnemyNavigation : MonoBehaviour {
         {
             Vector3 bounceDirection = transform.position - other.gameObject.transform.position;
             Rigidbody enemyBody = this.GetComponent<Rigidbody>();
-            bounceSpeed = -1f;
+            bounceSpeed = 1.5f;
             enemyBody.velocity += (bounceDirection * bounceSpeed);
         }
     }

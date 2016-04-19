@@ -5,7 +5,7 @@ public class Fade : MonoBehaviour {
 
 	void Update(){
 
-		Invoke ("fadeOut", 50);
+		Invoke ("fadeOut", 60);
 	}
 
 	void fadeOut(){
