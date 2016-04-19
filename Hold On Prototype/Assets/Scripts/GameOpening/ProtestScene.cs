@@ -44,6 +44,7 @@ public class ProtestScene : MonoBehaviour {
 		protestCamera.enabled = true;
 		protesters.SetActive (true);
 		Invoke("spawnEnemies", 6);
+        chant.startChant = true;
 
 //		protestTimer -= Time.deltaTime;
 //		if (protestTimer <= 0) {
