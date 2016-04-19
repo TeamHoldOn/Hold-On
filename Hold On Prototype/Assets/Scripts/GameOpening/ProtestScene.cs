@@ -7,8 +7,11 @@ public class ProtestScene : MonoBehaviour {
 	public Camera protestCamera;
 	public GameObject enemy;
 	private Vector3 spawnPoint;
-	public float protestTimer = 10f;
+	public float protestTimer = 5f;
+//	public float enemySpawnerTimer = 25f;
 	public GameObject enemySpawner;
+	public GameObject protesters;
+	public static bool protestEnabled = false;
 
 	void Start() {
 		mainCamera.enabled = true;
@@ -16,25 +19,38 @@ public class ProtestScene : MonoBehaviour {
 	}
 
 	public void Update(){
-		protestTimer -= Time.deltaTime / 50;
 
-		if (protestTimer <= 0) {
-			mainCamera.enabled = true;
-			protestCamera.enabled = false;
-			enemySpawner.SetActive (true);
+		if (protestEnabled == true) {
+			protestTimer -= Time.deltaTime / 50;
+//			enemySpawnerTimer -= Time.deltaTime / 50;
+
+			if (protestTimer <= 0) {
+				mainCamera.enabled = true;
+				protestCamera.enabled = false;
+				enemySpawner.SetActive (true);
+				protestEnabled = false;
+			}
+
+//			if (enemySpawnerTimer <= 0) {
+//				enemySpawner.SetActive (true);
+//			} 
+
 		}
 	}
 
 	public void beginProtest(){
+		protestEnabled = true;
 		mainCamera.enabled = false;
 		protestCamera.enabled = true;
-		Invoke("spawnEnemies", 8);
+		protesters.SetActive (true);
+		Invoke("spawnEnemies", 6);
 
-		protestTimer -= Time.deltaTime;
-		if (protestTimer <= 0) {
-			mainCamera.enabled = true;
-			protestCamera.enabled = false;
-		}
+//		protestTimer -= Time.deltaTime;
+//		if (protestTimer <= 0) {
+//			mainCamera.enabled = true;
+//			protestCamera.enabled = false;
+//
+//		}
 	}
 
 	public void spawnEnemies(){

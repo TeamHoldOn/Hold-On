@@ -21,9 +21,9 @@ public class FirstEnemyController : MonoBehaviour {
 
 	void Update() {
 		if (hitpoints == 0 && this.gameObject.tag != "Dead") {
-			this.gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
-			this.gameObject.GetComponent<Rigidbody>().useGravity = true;
 			Destroy (GetComponent<EnemyNavigation>());
+			this.gameObject.GetComponent<Rigidbody>().useGravity = true;
+
 			this.gameObject.tag = "Dead";
 			destroyTimer = 3f;
 		}        
@@ -31,13 +31,14 @@ public class FirstEnemyController : MonoBehaviour {
 		if (hitpoints <= 0) {
 			destroyTimer = destroyTimer - Time.deltaTime;
 			if (destroyTimer < 0) {
-				Destroy (this.gameObject);
+				this.gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
 
 				//Call the function in the ProtestScene script
 				GameObject protestSceneManager = GameObject.Find("ProtestSceneManager");
 				ProtestScene ps = protestSceneManager.GetComponent<ProtestScene>();
-				ps.Update ();
 				ps.beginProtest();
+
+				Destroy (this.gameObject);
 			}
 		}
 	}
