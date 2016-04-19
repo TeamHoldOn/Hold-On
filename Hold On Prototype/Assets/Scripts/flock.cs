@@ -39,7 +39,7 @@ public class flock : MonoBehaviour {
                     follow.velocity += followLeader.normalized * 0.1f;
            
                     float speedLimit = follow.velocity.sqrMagnitude;
-                    if (speedLimit > 1f) {
+                    if (speedLimit > 0.8f) {
                         follow.velocity += -(follow.velocity.normalized); 
                     }
       
