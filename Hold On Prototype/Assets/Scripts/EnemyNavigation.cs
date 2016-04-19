@@ -40,7 +40,7 @@ public class EnemyNavigation : MonoBehaviour {
 	private GameObject FindClosestFriendly(Vector3 enemyLocation){
 		GameObject closestFriendly = null;
 		float closestFriendlyDistance = Mathf.Infinity;
-		GameObject[] friendlies = GameObject.FindGameObjectsWithTag ("Friendly"); //& GameObject.FindGameObjectsWithTag("Leader");
+		GameObject[] friendlies = GameObject.FindGameObjectsWithTag ("Friendly"); // & GameObject.FindGameObjectsWithTag ("Leader") & GameObject.FindGameObjectsWithTag("Protester"));
 
 		foreach (GameObject friendly in friendlies) {
 			float tempDistance = Vector3.Distance (enemyLocation, friendly.transform.position);
@@ -65,7 +65,7 @@ public class EnemyNavigation : MonoBehaviour {
             enemyBody.velocity += (bounceDirection * bounceSpeed);
         }
 
-        if (collision.gameObject.tag == "Friendly" || collision.gameObject.tag == "Leader") {
+		if (collision.gameObject.tag == "Friendly" || collision.gameObject.tag == "Leader" || collision.gameObject.tag == "Protester") {
             Vector3 bounceDirection = (transform.position - collision.gameObject.transform.position);
             Rigidbody enemyBody = this.GetComponent<Rigidbody>();
             bounceSpeed = 2.5f;

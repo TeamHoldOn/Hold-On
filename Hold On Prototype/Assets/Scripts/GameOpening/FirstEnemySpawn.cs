@@ -13,12 +13,10 @@ public class FirstEnemySpawn : MonoBehaviour {
 	}
 
 	void spawnFirstEnemy(){
-		spawnPoint.x = 15f;
+		spawnPoint.x = 5f;
 		spawnPoint.y = 1.5f;
-		spawnPoint.z = 15f;
+		spawnPoint.z = -30f;
 		Instantiate (firstEnemy, spawnPoint, Quaternion.identity);
 		CancelInvoke ();
 	}
-
-
 }
