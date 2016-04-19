@@ -5,7 +5,7 @@ public class FirstEnemyController : MonoBehaviour {
 
 	public Camera firstCamera = Camera.main;
 	public Camera protestCamera;
-	public float hitpoints = 2;
+	public float hitpoints = 3;
 
 	float destroyTimer = -1;
 
