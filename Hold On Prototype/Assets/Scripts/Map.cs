@@ -2,13 +2,15 @@
 using System.Collections;
 
 public class Map : MonoBehaviour {
-
+    //hex group object empty container with hex model inside
     public GameObject hexPrefab;
+    // size of map
     public int width = 50;
     public int depth = 40;
+    // offset of hexes to account for even hex rows (z) needing to be offset for tesselation 
     float offset = .89f;
 
-
+    //instantiates initial map
     void Awake() {
         for (int x = 0; x < width; x++)
         {
@@ -19,19 +21,22 @@ public class Map : MonoBehaviour {
                 if ( z % 2 == 1) {
                     xPos = xPos+offset;
                 }
-
+                //sets rotation for each hex object
                Quaternion rotation = this.HexRotation();   
-                
+              
+               //instantiates hex object, creates grid naming convention and set map as parent  
               GameObject hex_obj =(GameObject)Instantiate(hexPrefab, new Vector3(xPos, 0, 1.5f*z), rotation);
                 hex_obj.name = "Hex_#_" + x + "_" + z;
 
+                //hex objects will move as parent is moved
                 hex_obj.transform.SetParent(this.transform, worldPositionStays:false);
               }
         }
+        //Once loops are complete declares map to be done and allows each hex to create an array with it's nearest neighbors
         NearestHexFinder.allInstantiated = true;
     }
 
-
+    //establishes rotation of initial hexes in 60 degree increments all rotations equally likley
    private Quaternion HexRotation()
     {
 

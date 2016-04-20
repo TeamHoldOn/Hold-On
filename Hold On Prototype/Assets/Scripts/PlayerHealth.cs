@@ -21,8 +21,10 @@ public class PlayerHealth : MonoBehaviour
 		}
 	}
 
+    
 	void Update(){
-		if (currentHealth <= 0) {
+	// if player is dead frezzes player and sets end condition true triggering end scene.
+    	if (currentHealth <= 0) {
 			playerMovement.enabled = false;
             GameStateManager.died = true;
         }

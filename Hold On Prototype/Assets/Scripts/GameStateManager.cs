@@ -4,7 +4,7 @@ using UnityEngine.SceneManagement;
 
 public class GameStateManager : MonoBehaviour
 {
-
+    // three different end conditions
     public static bool fled = false;
     public static bool died = false;
     public static bool lost = false;
@@ -16,6 +16,7 @@ public class GameStateManager : MonoBehaviour
 
         if (fled | died | lost)
         {
+            // each frame if game has ended camera zooms out to show field damage and ongoing chaos begins the transition to final scene
             mainCamera.GetComponent<CameraController>().enabled =false;
             StartCoroutine(onEndGame.Transition());
 
@@ -27,7 +28,7 @@ public class GameStateManager : MonoBehaviour
 
     }
 
-
+    // resets end variables so game is not constantly trying to load the last scene
     public void ResetEndVariables()
     {
         fled = false;
@@ -36,6 +37,7 @@ public class GameStateManager : MonoBehaviour
 
     }
 
+    // function to load final scene separate from current scene and then resets the variables
     void InitiateEnding() {
         SceneManager.LoadScene("Ending", LoadSceneMode.Single);
         ResetEndVariables();
