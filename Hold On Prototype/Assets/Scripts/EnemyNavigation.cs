@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 
 public class EnemyNavigation : MonoBehaviour {
 
@@ -40,9 +41,12 @@ public class EnemyNavigation : MonoBehaviour {
 	private GameObject FindClosestFriendly(Vector3 enemyLocation){
 		GameObject closestFriendly = null;
 		float closestFriendlyDistance = Mathf.Infinity;
-		GameObject[] friendlies = GameObject.FindGameObjectsWithTag ("Friendly"); // & GameObject.FindGameObjectsWithTag ("Leader") & GameObject.FindGameObjectsWithTag("Protester"));
+		GameObject[] foundFriendlies = GameObject.FindGameObjectsWithTag ("Friendly"); // & GameObject.FindGameObjectsWithTag ("Leader") & GameObject.FindGameObjectsWithTag("Protester"));
+        GameObject[] foundProtesters = GameObject.FindGameObjectsWithTag("Protester");
+        GameObject[] friendlies = foundFriendlies.Concat(foundProtesters).ToArray();
 
-		foreach (GameObject friendly in friendlies) {
+
+        foreach (GameObject friendly in friendlies) {
 			float tempDistance = Vector3.Distance (enemyLocation, friendly.transform.position);
 
 			if (tempDistance < closestFriendlyDistance) {
