@@ -20,7 +20,7 @@ public class EnemySpawner : MonoBehaviour {
 	void spawnEnemy(){
 		spawnPoint.x = Random.Range(-40, 40);
 		spawnPoint.y = 1.5f;
-		spawnPoint.z = Random.Range(-20, 40);
+		spawnPoint.z = Random.Range(-20, -40);
 
 		Instantiate(enemy, spawnPoint, Quaternion.identity);
 		CancelInvoke();
