@@ -3,7 +3,7 @@ using UnityEngine.UI;
 using System.Collections;
 
 public class EndScriptSelect : MonoBehaviour
-{
+{   //sets specific message depending on how game ended. Done through image rather than text because Unity doesn't easily support arabic text
     public Sprite diedImage;
     public Sprite fledImage;
     public Sprite lostImage;
