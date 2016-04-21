@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using System.Collections;
 
 public class MainMenu : MonoBehaviour {
@@ -8,6 +9,7 @@ public class MainMenu : MonoBehaviour {
     public Image instruction;
     public Sprite englishInstruction;
     public Sprite arabicInstruction;
+    public static bool playedOnce = false;
 
     public void PlayGame(){
 
@@ -18,11 +20,16 @@ public class MainMenu : MonoBehaviour {
         this.instruction.sprite = englishInstruction; }
         if (continueCounter == 3)
         {
-            Application.LoadLevel(1);
+            SceneManager.LoadScene(1);
         }
 	}
 
-	public void ExitGame(){
+    public void ReplayGame()
+    {
+        playedOnce = true;
+        SceneManager.LoadScene(1);
+    }
+    public void ExitGame(){
 	
 		Application.Quit ();
 	
