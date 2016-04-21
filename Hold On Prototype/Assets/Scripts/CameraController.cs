@@ -21,7 +21,7 @@ public class CameraController : MonoBehaviour {
 	}
 
 	private void LateUpdate(){
-		Vector3 dir = new Vector3 (0, 15f, -distance);
+		Vector3 dir = new Vector3 (0, 12f, -distance);
 		Quaternion rotation = Quaternion.Euler (lookAt.transform.position.y, currentX, 0);
 		camTransform.position = lookAt.position + rotation * dir;
 		camTransform.LookAt (lookAt.position);

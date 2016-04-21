@@ -12,7 +12,7 @@ public class EnemySpawner : MonoBehaviour {
 		totalEnemies = GameObject.FindGameObjectsWithTag ("Enemy");
 		amount = totalEnemies.Length;
 
-		if (amount < 5) {
+		if (amount < 8) {
 			InvokeRepeating ("spawnEnemy", 5, 15f);
 		}
 	}
@@ -20,9 +20,16 @@ public class EnemySpawner : MonoBehaviour {
 	void spawnEnemy(){
 		spawnPoint.x = Random.Range(-40, 40);
 		spawnPoint.y = 1.5f;
-		spawnPoint.z = Random.Range(-20, -40);
+		spawnPoint.z = Random.Range(0, 15);
 
 		Instantiate(enemy, spawnPoint, Quaternion.identity);
+
+		spawnPoint.x = Random.Range (-40, 40);
+		spawnPoint.y = 1.5f;
+		spawnPoint.z = Random.Range(-30, -55);
+
+		Instantiate(enemy, spawnPoint, Quaternion.identity);
+		
 		CancelInvoke();
 	}
 }
