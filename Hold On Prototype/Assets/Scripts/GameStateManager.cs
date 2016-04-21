@@ -10,7 +10,25 @@ public class GameStateManager : MonoBehaviour
     public static bool lost = false;
     public OnEndGame onEndGame;
     public Camera mainCamera;
-    // Update is called once per frame
+    public Canvas canvas;
+    public Camera protestCamera;
+    public GameObject protestSceneManager;
+    public GameObject player;
+    public GameObject enemySpawner;
+    public GameObject protesters;
+
+    void Start(){
+    if(MainMenu.playedOnce) {
+            canvas.enabled = false;
+            protestCamera.enabled = false;
+            protestSceneManager.SetActive(false);
+            player.GetComponent<FirstEnemySpawn>().enabled = false;
+            enemySpawner.SetActive(true);
+            protesters.SetActive(true);
+
+}
+     }
+    
     void Update()
     {
 
