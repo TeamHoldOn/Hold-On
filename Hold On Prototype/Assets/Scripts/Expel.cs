@@ -21,16 +21,16 @@ public class Expel : MonoBehaviour {
 		Vector3 direction = (rb.transform.position - player.transform.position).normalized;
 
 		if (Input.GetButtonDown("Jump"))
-			forceAmount = 5;    
+			forceAmount = 10;    
 		else if (Input.GetButton("Jump"))
-			forceAmount = 5;  
+			forceAmount = 10;  
 		else if (Input.GetButtonUp("Jump"))
 			forceAmount = 0;   
 
 		if (distance <= 4){
-			rb.velocity = direction * forceAmount;
+            rb.AddForce((direction * forceAmount));
 		}
 
 	}
-
+  
 }
