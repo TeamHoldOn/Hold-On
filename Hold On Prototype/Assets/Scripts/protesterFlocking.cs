@@ -4,6 +4,7 @@ using System.Collections;
 public class protesterFlocking : MonoBehaviour {
 
     GameObject[] Protesters;
+   public GameObject Protester;
 
     void Awake() {
         Protesters = GameObject.FindGameObjectsWithTag("Protester");
@@ -29,7 +30,7 @@ public class protesterFlocking : MonoBehaviour {
     
             if (flockSize > 0) {
                 center = center/flockSize + transform.position;
-                Rigidbody rb = Protester.GetComponent<Rigidbody>();
+                Rigidbody rb = this.Protester.GetComponent<Rigidbody>();
                 rb.velocity = (center.normalized + avoid.normalized) * 0.3f;
                 
                 float speedLimit = rb.velocity.sqrMagnitude;
