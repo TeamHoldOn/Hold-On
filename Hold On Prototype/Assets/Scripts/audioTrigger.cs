@@ -16,7 +16,7 @@ public class audioTrigger : MonoBehaviour {
     
     void Update() {
         if (boom == true) {
-            Destroy (this.gameObject, 3);
+            Destroy (this.gameObject, 15);
         }
     }
     
