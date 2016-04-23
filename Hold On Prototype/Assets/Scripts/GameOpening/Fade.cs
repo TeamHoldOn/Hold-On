@@ -15,7 +15,5 @@ public class Fade : MonoBehaviour {
 		if (canvasGroup.alpha > 0) {
 			canvasGroup.alpha -= Time.deltaTime / 10;
 		}
-        
-        mainMusic.startMusic = true;
 	}
 }
