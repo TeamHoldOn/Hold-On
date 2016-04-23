@@ -5,7 +5,7 @@ public class Fade : MonoBehaviour {
 
 	void Update(){
 
-		Invoke ("fadeOut", 60);
+		Invoke ("fadeOut", 56);
 	}
 
 	void fadeOut(){
@@ -15,5 +15,7 @@ public class Fade : MonoBehaviour {
 		if (canvasGroup.alpha > 0) {
 			canvasGroup.alpha -= Time.deltaTime / 10;
 		}
+        
+        mainMusic.startMusic = true;
 	}
 }
