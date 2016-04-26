@@ -17,25 +17,23 @@ public class ProtestScene : MonoBehaviour {
 	void Start() {
 		mainCamera.enabled = false;
 		protestCamera.enabled = true;
+		beginProtest ();
 	}
 
 	public void Update(){
 
-		if (protestEnabled == true) {
-			protestTimer -= Time.deltaTime / 30;
+		protestTimer -= Time.deltaTime / 20;
 
-			if (protestTimer <= 0) {
+		if (protestTimer <= 0) {
 
-				cameraOffsets = mainCamera.transform.position - protestCamera.transform.position;
-				protestCamera.transform.position += cameraOffsets;
+			cameraOffsets = mainCamera.transform.position - protestCamera.transform.position;
+			protestCamera.transform.position += cameraOffsets;
 
-				if (protestCamera.transform.position == mainCamera.transform.position) {
+			if (protestCamera.transform.position == mainCamera.transform.position) {
 					
-					mainCamera.enabled = true;
-					protestCamera.enabled = false;
-					enemySpawner.SetActive (true);
-					protestEnabled = false;
-				}
+				mainCamera.enabled = true;
+				protestCamera.enabled = false;
+				enemySpawner.SetActive (true);
 			}
 		}
 	}

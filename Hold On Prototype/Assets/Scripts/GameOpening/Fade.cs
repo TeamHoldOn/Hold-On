@@ -4,24 +4,28 @@ using System.Collections;
 public class Fade : MonoBehaviour {
 
 	public GameObject protesters;
-	public float fadeTimer = 56f;
-	CanvasGroup canvasGroup;
-	GameObject protestSceneManager = GameObject.Find("ProtestSceneManager");
+	public float fadeTimer = 4.5f; //should be 56
+	GameObject protestSceneManager;
 
-	void FixedUpdate(){
 
-		fadeTimer -= Time.fixedDeltaTime;
-		ProtestScene ps = protestSceneManager.GetComponent<ProtestScene>();
-		canvasGroup =  GetComponent<CanvasGroup> ();
+	void Update(){
+		CanvasGroup canvasGroup =  GetComponent<CanvasGroup> ();
 
-		if (fadeTimer < 4) {
+		if (fadeTimer < 2) {
 			protesters.SetActive (true);
 			canvasGroup.alpha -= Time.deltaTime / 10;
 		}
 
-		if (ps.protestEnabled == false && fadeTimer > -6) {
-			
-			ps.beginProtest();
+		if (canvasGroup.alpha == 0 && fadeTimer < -2) {
+
+			protestSceneManager.SetActive (true);
 		}
+
+		
+	}
+		
+	void FixedUpdate(){
+
+		fadeTimer -= Time.fixedDeltaTime;
 	}
 }
