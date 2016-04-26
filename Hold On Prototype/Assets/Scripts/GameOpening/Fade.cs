@@ -3,17 +3,25 @@ using System.Collections;
 
 public class Fade : MonoBehaviour {
 
-	void Update(){
+	public GameObject protesters;
+	public float fadeTimer = 56f;
+	CanvasGroup canvasGroup;
+	GameObject protestSceneManager = GameObject.Find("ProtestSceneManager");
 
-		Invoke ("fadeOut", 56);
-	}
+	void FixedUpdate(){
 
-	void fadeOut(){
+		fadeTimer -= Time.fixedDeltaTime;
+		ProtestScene ps = protestSceneManager.GetComponent<ProtestScene>();
+		canvasGroup =  GetComponent<CanvasGroup> ();
 
-		CanvasGroup canvasGroup = GetComponent<CanvasGroup> ();
-
-		if (canvasGroup.alpha > 0) {
+		if (fadeTimer < 4) {
+			protesters.SetActive (true);
 			canvasGroup.alpha -= Time.deltaTime / 10;
+		}
+
+		if (ps.protestEnabled == false && fadeTimer > -6) {
+			
+			ps.beginProtest();
 		}
 	}
 }

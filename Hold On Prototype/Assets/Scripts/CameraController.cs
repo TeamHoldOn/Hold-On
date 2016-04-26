@@ -6,14 +6,11 @@ public class CameraController : MonoBehaviour {
 	public Transform lookAt;
 	public Transform camTransform;
 
-//	private Camera cam;
-
 	private float distance = 10.0f;
 	private float currentX = 0f;
 
 	private void Start(){
 		camTransform = transform;
-//		cam = Camera.main;
 	}
 
 	private void Update(){

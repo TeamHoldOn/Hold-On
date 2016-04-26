@@ -10,23 +10,32 @@ public class ProtestScene : MonoBehaviour {
 	public float protestTimer = 5f;
 	public GameObject enemySpawner;
 	public GameObject protesters;
-	public static bool protestEnabled = false;
+	public bool protestEnabled = false;
+	private Vector3 cameraOffsets;
+
 
 	void Start() {
-		mainCamera.enabled = true;
-		protestCamera.enabled = false;
+		mainCamera.enabled = false;
+		protestCamera.enabled = true;
 	}
 
 	public void Update(){
 
 		if (protestEnabled == true) {
-			protestTimer -= Time.deltaTime / 35;
+			protestTimer -= Time.deltaTime / 30;
 
 			if (protestTimer <= 0) {
-				mainCamera.enabled = true;
-				protestCamera.enabled = false;
-				enemySpawner.SetActive (true);
-				protestEnabled = false;
+
+				cameraOffsets = mainCamera.transform.position - protestCamera.transform.position;
+				protestCamera.transform.position += cameraOffsets;
+
+				if (protestCamera.transform.position == mainCamera.transform.position) {
+					
+					mainCamera.enabled = true;
+					protestCamera.enabled = false;
+					enemySpawner.SetActive (true);
+					protestEnabled = false;
+				}
 			}
 		}
 	}
@@ -35,7 +44,6 @@ public class ProtestScene : MonoBehaviour {
 		protestEnabled = true;
 		mainCamera.enabled = false;
 		protestCamera.enabled = true;
-		protesters.SetActive (true);
 		spawnEnemies ();
         chant.startChant = true;
 	}
