@@ -6,22 +6,19 @@ public class CameraController : MonoBehaviour {
 	public Transform lookAt;
 	public Transform camTransform;
 
-//	private Camera cam;
+	public float distance = 8f;
+	public float currentX = 0f;
 
-	private float distance = 10.0f;
-	private float currentX = 0f;
-
-	private void Start(){
+	public void Start(){
 		camTransform = transform;
-//		cam = Camera.main;
 	}
 
-	private void Update(){
+	public void Update(){
 		currentX -= Input.GetAxis ("RightJoystickX");
 	}
 
-	private void LateUpdate(){
-		Vector3 dir = new Vector3 (0, 12f, -distance);
+	public void LateUpdate(){
+		Vector3 dir = new Vector3 (0, 8.5f, -distance);
 		Quaternion rotation = Quaternion.Euler (lookAt.transform.position.y, currentX, 0);
 		camTransform.position = lookAt.position + rotation * dir;
 		camTransform.LookAt (lookAt.position);

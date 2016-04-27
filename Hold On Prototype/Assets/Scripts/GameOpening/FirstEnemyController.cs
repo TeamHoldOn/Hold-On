@@ -33,11 +33,6 @@ public class FirstEnemyController : MonoBehaviour {
 			if (destroyTimer < 0) {
 				this.gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
 
-				//Call the function in the ProtestScene script
-				GameObject protestSceneManager = GameObject.Find("ProtestSceneManager");
-				ProtestScene ps = protestSceneManager.GetComponent<ProtestScene>();
-				ps.beginProtest();
-
 				Destroy (this.gameObject);
 			}
 		}

@@ -3,30 +3,37 @@ using System.Collections;
 
 public class ProtestScene : MonoBehaviour {
 
-	public Camera mainCamera;// = Camera.main;
+	public Camera mainCamera;
 	public Camera protestCamera;
 	public GameObject enemy;
 	private Vector3 spawnPoint;
 	public float protestTimer = 5f;
 	public GameObject enemySpawner;
 	public GameObject protesters;
-	public static bool protestEnabled = false;
+	public bool protestEnabled = false;
+	private Vector3 cameraPositionOffset;
 
 	void Start() {
-		mainCamera.enabled = true;
-		protestCamera.enabled = false;
+		mainCamera.enabled = false;
+		protestCamera.enabled = true;
+		beginProtest ();
 	}
 
 	public void Update(){
 
-		if (protestEnabled == true) {
-			protestTimer -= Time.deltaTime / 35;
+		protestTimer -= Time.deltaTime / 25;
 
-			if (protestTimer <= 0) {
+		if (protestTimer <= 0) {
+
+			protestCamera.transform.position = Vector3.Lerp(protestCamera.transform.position, mainCamera.transform.position, Time.deltaTime / 2.5f);
+			protestCamera.transform.rotation = Quaternion.Lerp (protestCamera.transform.rotation, mainCamera.transform.rotation, Time.deltaTime / 2);
+
+			if (mainCamera.transform.position.x - protestCamera.transform.position.x < .05) {
+
 				mainCamera.enabled = true;
 				protestCamera.enabled = false;
+				Destroy (protestCamera);
 				enemySpawner.SetActive (true);
-				protestEnabled = false;
 			}
 		}
 	}
@@ -35,7 +42,6 @@ public class ProtestScene : MonoBehaviour {
 		protestEnabled = true;
 		mainCamera.enabled = false;
 		protestCamera.enabled = true;
-		protesters.SetActive (true);
 		spawnEnemies ();
         chant.startChant = true;
 	}
