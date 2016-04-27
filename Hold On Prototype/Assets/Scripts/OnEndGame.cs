@@ -25,6 +25,4 @@ public class OnEndGame : MonoBehaviour {
         //camera move has executed triggers other end game functions in GameStateManager
         cameraPanned = true;
     }
-
-
 }

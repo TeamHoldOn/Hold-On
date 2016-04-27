@@ -3,7 +3,7 @@ using System.Collections;
 
 public class ProtestScene : MonoBehaviour {
 
-	public Camera mainCamera;// = Camera.main;
+	public Camera mainCamera;
 	public Camera protestCamera;
 	public GameObject enemy;
 	private Vector3 spawnPoint;
@@ -11,8 +11,7 @@ public class ProtestScene : MonoBehaviour {
 	public GameObject enemySpawner;
 	public GameObject protesters;
 	public bool protestEnabled = false;
-	private Vector3 cameraOffsets;
-
+	private Vector3 cameraPositionOffset;
 
 	void Start() {
 		mainCamera.enabled = false;
@@ -22,17 +21,18 @@ public class ProtestScene : MonoBehaviour {
 
 	public void Update(){
 
-		protestTimer -= Time.deltaTime / 20;
+		protestTimer -= Time.deltaTime / 25;
 
 		if (protestTimer <= 0) {
 
-			cameraOffsets = mainCamera.transform.position - protestCamera.transform.position;
-			protestCamera.transform.position += cameraOffsets;
+			protestCamera.transform.position = Vector3.Lerp(protestCamera.transform.position, mainCamera.transform.position, Time.deltaTime / 2.5f);
+			protestCamera.transform.rotation = Quaternion.Lerp (protestCamera.transform.rotation, mainCamera.transform.rotation, Time.deltaTime / 2);
 
-			if (protestCamera.transform.position == mainCamera.transform.position) {
-					
+			if (mainCamera.transform.position.x - protestCamera.transform.position.x < .05) {
+
 				mainCamera.enabled = true;
 				protestCamera.enabled = false;
+				Destroy (protestCamera);
 				enemySpawner.SetActive (true);
 			}
 		}
