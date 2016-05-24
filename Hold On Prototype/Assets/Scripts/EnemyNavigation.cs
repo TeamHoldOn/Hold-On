@@ -11,7 +11,6 @@ public class EnemyNavigation : MonoBehaviour {
 	public float targetScanTime = 3.0f;
 	public GameObject target;
 
-
 	// Use this for initialization
 	void Start () {
 		target = FindClosestFriendly (this.transform.position);
@@ -43,9 +42,14 @@ public class EnemyNavigation : MonoBehaviour {
 		float closestFriendlyDistance = Mathf.Infinity;
 		GameObject[] foundFriendlies = GameObject.FindGameObjectsWithTag ("Friendly"); // & GameObject.FindGameObjectsWithTag ("Leader") & GameObject.FindGameObjectsWithTag("Protester"));
         GameObject[] foundProtesters = GameObject.FindGameObjectsWithTag("Protester");
-        GameObject[] friendlies = foundFriendlies.Concat(foundProtesters).ToArray();
+		GameObject[] friendlies = foundFriendlies.Concat(foundProtesters).ToArray();
 
 
+		if (foundFriendlies.Length < 10) {
+			GameObject[] foundPlayer = GameObject.FindGameObjectsWithTag ("Player");
+			friendlies = foundFriendlies.Concat (foundPlayer).ToArray ();
+		}
+			
         foreach (GameObject friendly in friendlies) {
 			float tempDistance = Vector3.Distance (enemyLocation, friendly.transform.position);
 
