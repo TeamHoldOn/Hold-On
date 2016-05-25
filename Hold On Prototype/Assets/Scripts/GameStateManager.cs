@@ -28,6 +28,9 @@ public class GameStateManager : MonoBehaviour
             enemySpawner.SetActive(true);
             protesters.SetActive(true);
             canvas.GetComponent<AudioSource>().enabled = false;
+            protestSceneManager.GetComponent<ProtestScene>().enabled = false;
+            protestCamera.GetComponent<AudioSource>().enabled = false;
+            protestCamera.GetComponent<chant>().enabled = false;
         }
     }
     void Update()
