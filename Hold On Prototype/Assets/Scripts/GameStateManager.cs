@@ -17,18 +17,19 @@ public class GameStateManager : MonoBehaviour
     public GameObject enemySpawner;
     public GameObject protesters;
 
-    void Start(){
-    if(MainMenu.playedOnce) {
+    void Start()
+    {
+        if (MainMenu.playedOnce)
+        {
             canvas.enabled = false;
             protestCamera.enabled = false;
             protestSceneManager.SetActive(false);
             player.GetComponent<FirstEnemySpawn>().enabled = false;
             enemySpawner.SetActive(true);
             protesters.SetActive(true);
-
-}
-     }
-    
+            canvas.GetComponent<AudioSource>().enabled = false;
+        }
+    }
     void Update()
     {
 
