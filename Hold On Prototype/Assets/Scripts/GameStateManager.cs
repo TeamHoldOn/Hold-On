@@ -8,6 +8,7 @@ public class GameStateManager : MonoBehaviour
     public static bool fled = false;
     public static bool died = false;
     public static bool lost = false;
+    public static bool ending = false;
     public OnEndGame onEndGame;
     public Camera mainCamera;
     public Canvas canvas;
@@ -18,7 +19,9 @@ public class GameStateManager : MonoBehaviour
     public GameObject protesters;
 
     void Start()
-    {
+    {   
+        GameObject.DontDestroyOnLoad(gameObject);
+
         if (MainMenu.playedOnce)
         {
             canvas.enabled = false;
@@ -36,7 +39,7 @@ public class GameStateManager : MonoBehaviour
     void Update()
     {
 
-        if (fled | died | lost)
+        if ((fled | died | lost) && !ending)
         {
             // each frame if game has ended camera zooms out to show field damage and ongoing chaos begins the transition to final scene
             mainCamera.GetComponent<CameraController>().enabled =false;
@@ -44,6 +47,7 @@ public class GameStateManager : MonoBehaviour
 
             if (OnEndGame.cameraPanned)
             {
+                ending = true;
                 Invoke("InitiateEnding", 3);
             }
         }
@@ -62,6 +66,8 @@ public class GameStateManager : MonoBehaviour
     // function to load final scene separate from current scene and then resets the variables
     void InitiateEnding() {
         SceneManager.LoadScene("Ending", LoadSceneMode.Single);
-        ResetEndVariables();
+        Debug.Log("Loaded Scene");
+     //ResetEndVariables();
+     
     }
 }
