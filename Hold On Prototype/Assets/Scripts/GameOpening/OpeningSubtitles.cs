@@ -11,7 +11,6 @@ public class OpeningSubtitles : MonoBehaviour {
 
 		subtitle = GetComponent<Text>();
 
-			
 	}
 	
 	void FixedUpdate () {
