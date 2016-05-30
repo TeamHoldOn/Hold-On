@@ -6,14 +6,17 @@ public class flock : MonoBehaviour {
     GameObject Leader;
     GameObject[] Friendlies;
     GameObject[] Leaders;
+    bool optimize;
     
     void Awake() {
         Friendlies = GameObject.FindGameObjectsWithTag("Friendly");
-        Leaders = GameObject.FindGameObjectsWithTag("Leader");    
+        Leaders = GameObject.FindGameObjectsWithTag("Leader");
+        optimize = false;    
     }
     
     void OnCollisionEnter(Collision collision) {
        if (collision.gameObject.tag == "Player") {
+           optimize = true;
            if (null != GameObject.FindWithTag("Leader")) {
                GameObject oldLeader = GameObject.FindWithTag("Leader");
                oldLeader.tag = "Friendly";
@@ -34,19 +37,26 @@ public class flock : MonoBehaviour {
         if (Leaders.Length != 0) {
             foreach (GameObject Friendly in Friendlies) {
                 if (Friendly != Leader) {
+                    Rigidbody avoid = Friendly.GetComponent<Rigidbody>();
+                    
+                    if (optimize) {
+                        avoid.AddForce(-(Friendly.transform.position), ForceMode.Impulse);
+                        optimize = false;  
+                    }
+                    
                     Vector3 followLeader = Leader.transform.position - Friendly.transform.position;
                     Rigidbody follow = GetComponent<Rigidbody>();
-                    follow.velocity += followLeader.normalized * 0.1f;
+                    follow.AddForce(followLeader.normalized * 0.3f, ForceMode.Impulse); 
+                    follow.velocity += followLeader.normalized;
            
                     float speedLimit = follow.velocity.sqrMagnitude;
                     if (speedLimit > 0.8f) {
-                        follow.velocity += -(follow.velocity.normalized); 
+                        follow.velocity += -(follow.velocity.normalized * 1.2f); 
                     }
       
                     float currentDist = Vector3.Distance (selfPosition, Friendly.transform.position);
                     if (currentDist < minDist) {
                         Vector3 repulse = Friendly.transform.position - selfPosition;
-                        Rigidbody avoid = Friendly.GetComponent<Rigidbody>();
                         avoid.velocity += repulse.normalized * 0.3f;
                     }
                 }
