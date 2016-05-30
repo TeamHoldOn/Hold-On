@@ -7,32 +7,49 @@ public class EndScriptSelect : MonoBehaviour
     public Sprite diedImage;
     public Sprite fledImage;
     public Sprite lostImage;
-    Image finalMessage; 
-
+    Image finalMessage;
     // Use this for initialization
     void Start()
     {
-        if(GameStateManager.fled) 
-        {
-         finalMessage = this.GetComponent<Image>();
-            finalMessage.sprite = fledImage;
-        }
-        if (GameStateManager.died)
-        {
-            finalMessage = this.GetComponent<Image>();
-            finalMessage.sprite = diedImage;
+        Debug.Log("Last Scene Started");
 
-        }
-        if (GameStateManager.lost)
+        if (GameStateManager.ending)
         {
+            if (GameStateManager.fled)
+            {
+                finalMessage = this.GetComponent<Image>();
+                finalMessage.sprite = fledImage;
+                Debug.Log("Fled");
 
-            finalMessage = this.GetComponent<Image>();
-            finalMessage.sprite = lostImage;
+            }
+            if (GameStateManager.died)
+            {
+                finalMessage = this.GetComponent<Image>();
+                finalMessage.sprite = diedImage;
+                Debug.Log("Died");
+
+            }
+            if (GameStateManager.lost)
+            {
+
+                finalMessage = this.GetComponent<Image>();
+                finalMessage.sprite = lostImage;
+                Debug.Log("Lost it all");
+
+            }
+
+            GameStateManager.fled = false;
+            GameStateManager.died = false;
+            GameStateManager.lost = false;
+            GameStateManager.ending = false;
+            OnEndGame.cameraPanned = false;
         }
         else {
             finalMessage = this.GetComponent<Image>();
             finalMessage.sprite = lostImage;
+            Debug.Log("Nothing Happened");
         }
+           
+        
     }
-
 }

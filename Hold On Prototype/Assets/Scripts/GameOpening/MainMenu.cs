@@ -10,6 +10,7 @@ public class MainMenu : MonoBehaviour {
     public Sprite englishInstruction;
     public Sprite arabicInstruction;
     public static bool playedOnce = false;
+    GameObject gameState;
 
     public void PlayGame(){
 
@@ -26,6 +27,8 @@ public class MainMenu : MonoBehaviour {
 
     public void ReplayGame()
     {
+        gameState = GameObject.Find("GameState");
+        DestroyObject(gameState);
         playedOnce = true;
         SceneManager.LoadScene(1);
     }
