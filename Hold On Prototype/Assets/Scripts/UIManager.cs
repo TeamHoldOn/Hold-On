@@ -7,15 +7,26 @@ public class UIManager : MonoBehaviour {
 	public GameObject pauseCanvas;
 	bool pauseToggleOn = false;
 	bool isPaused = false;
+	int verticalInput = 0;
 
 	void Update(){
 		
 		PauseGame ();
+
+		//if the game is paused, start taking input from the controller to control button selection
+		if (isPaused) {
+			verticalInput = (int)Input.GetAxis ("Vertical");
+		}
+
+		if (verticalInput != 0) {
+
+		}
 	
 	}
 
 	//the following two functions are attached to buttons on the PausePanel
 	public void RestartGame(){
+		MainMenu.playedOnce = true;
 		SceneManager.LoadScene (1);
 	}
 
@@ -51,4 +62,19 @@ public class UIManager : MonoBehaviour {
 			pauseCanvas.SetActive (false);
 		}
 	}
+
+	/////////////////
+	/////////////////
+
+//	IEnumerator ButtonChange(int input)
+//	{
+//		if (input < 0 && Selected < pauseCanvas.Length - 1)
+//			Selected++;
+//		else if (input > 0 && Selected > 0)
+//			Selected--;
+//
+//		yield return new WaitForSeconds(1f);
+//		StopCoroutine(MenuChange(0));
+//	}
+
 }
