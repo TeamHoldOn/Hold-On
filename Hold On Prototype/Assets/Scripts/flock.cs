@@ -47,13 +47,13 @@ public class flock : MonoBehaviour {
                         
             foreach (GameObject Friendly in Friendlies) {
                 if (Friendly != Leader) {
-                    Vector3 followLeader = Leader.transform.position - Friendly.transform.position;
+                    Vector3 followLeader = Leader.transform.position - Player.transform.position;
                     Rigidbody follow = GetComponent<Rigidbody>();
-                    follow.velocity += followLeader.normalized * 0.1f;
+                    follow.velocity += followLeader.normalized / 2;
            
                     float speedLimit = follow.velocity.sqrMagnitude;
-                    if (speedLimit > 0.8f) {
-                        follow.velocity += -(follow.velocity.normalized); 
+                    if (speedLimit > 0.9f) {
+                        follow.velocity -= follow.velocity.normalized; 
                     }
       
                     float currentDist = Vector3.Distance (selfPosition, Friendly.transform.position);
