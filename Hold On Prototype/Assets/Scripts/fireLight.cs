@@ -3,8 +3,8 @@ using System.Collections;
 
 public class fireLight : MonoBehaviour {
     
-    public Light light;
-    public float duration = 1.5f;
+    Light light;
+    public float duration;
     public Color color1;
     public Color color2;
     
