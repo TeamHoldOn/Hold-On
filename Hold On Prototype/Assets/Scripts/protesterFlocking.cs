@@ -71,33 +71,39 @@ public class protesterFlocking : MonoBehaviour {
             }
             
             if (eWall) {
-                float eWallDist = Vector3.Distance(Protester.transform.position, EastWall.transform.position);
-                Vector3 eWallPush = (EastWall.transform.position - Protester.transform.position);
-                rb.velocity = -(eWallPush.normalized);
+                sWall = false;
+                wWall = false;
+               
+                Vector3 eWallPush = -(transform.position);
+                rb.velocity = eWallPush.normalized;
                 
                 if (speedLimit > 0.9f) {
-                        rb.velocity += -(rb.velocity.normalized);
+                        rb.velocity -= rb.velocity.normalized;
                 }
             }
             
             if (sWall) {
-                float sWallDist = Vector3.Distance(Protester.transform.position, SouthWall.transform.position);
-                Vector3 sWallPush = (SouthWall.transform.position - Protester.transform.position);
-                rb.velocity = -(sWallPush.normalized);
+                eWall = false;
+                wWall = false;
+                
+                Vector3 sWallPush = -(transform.position);
+                rb.velocity = sWallPush.normalized;
                 
                 if (speedLimit > 0.9f) {
-                        rb.velocity += -(rb.velocity.normalized);
+                        rb.velocity -= rb.velocity.normalized;
                 }
             }
             
             if (wWall) {
-                float wWallDist = Vector3.Distance(Protester.transform.position, WestWall.transform.position);
-                Vector3 wWallPush = (WestWall.transform.position - Protester.transform.position);
-                rb.velocity = -(wWallPush.normalized);
+                sWall = false;
+                eWall = false;
+                
+                Vector3 wWallPush = -(transform.position);
+                rb.velocity = wWallPush.normalized;
                 
                 if (speedLimit > 0.9f) {
-                        rb.velocity += -(rb.velocity.normalized);
-                }
+                        rb.velocity -= rb.velocity.normalized;
+                }            
             }
         }
     }
