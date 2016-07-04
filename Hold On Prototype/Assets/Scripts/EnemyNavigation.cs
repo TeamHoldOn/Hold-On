@@ -45,10 +45,13 @@ public class EnemyNavigation : MonoBehaviour {
 		GameObject[] friendlies = foundFriendlies.Concat(foundProtesters).ToArray();
 
 		//once the number of friendlies drops, the player will be added to the target list
-		if (foundFriendlies.Length <= 14) {
-			GameObject[] foundPlayer = GameObject.FindGameObjectsWithTag ("Player");
-			friendlies = foundFriendlies.Concat (foundPlayer).ToArray ();
-		}
+
+		//**DISCOVERED POST-BETA: for some reason, the following if statement makes it so that enemies ONLY chase the playe
+		//as opposed to the purpose described in the comment above. haven't been able to figure out the problem!
+//		if (foundFriendlies.Length <= 14) {
+//			GameObject[] foundPlayer = GameObject.FindGameObjectsWithTag ("Player");
+//			friendlies = foundFriendlies.Concat (foundPlayer).ToArray ();
+//		}
 			
         foreach (GameObject friendly in friendlies) {
 			float tempDistance = Vector3.Distance (enemyLocation, friendly.transform.position);

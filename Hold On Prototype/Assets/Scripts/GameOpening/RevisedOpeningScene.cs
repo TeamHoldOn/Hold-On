@@ -12,6 +12,7 @@ public class RevisedOpeningScene : MonoBehaviour {
 
 	public GameObject burningMan;
 	public GameObject singleProtester;
+	public GameObject openingRubbleSidiBouzid;
 	public GameObject openingRubbleTunisia;
 	public GameObject openingRubbleEgypt;
 	public GameObject openingRubbleLibya;
@@ -39,25 +40,30 @@ public class RevisedOpeningScene : MonoBehaviour {
 		timer += Time.fixedDeltaTime;
 
 		openingCam1.transform.LookAt (burningMan.transform.position);
+		openingCam1.transform.position = Vector3.Lerp (openingCam1.transform.position, burningMan.transform.position, Time.fixedDeltaTime / 8);
 
+		if (timer > 6) {
+			HP health = burningMan.GetComponent<HP>();
+			health.hitpoints = 0;
+		}
 
 		if (timer > 8.5) {
 			canvas.alpha = 1f;
+			openingRubbleSidiBouzid.SetActive (false);
 		}
 
 		//"Ben Ali fled"
 		if (timer > 10) {
+			openingCam1.transform.position = new Vector3 (-10, 6, -29);
 			canvas.alpha = 0.4f;
-			burningMan.SetActive (false);
 			singleProtester.SetActive (true);
 			openingRubbleTunisia.SetActive (true);
 			openingCam1.transform.LookAt (singleProtester.transform.position);
 
 			Vector3 singleProtesterDest = new Vector3 (singleProtester.transform.position.x, singleProtester.transform.position.y, 0);
-			singleProtester.transform.position = Vector3.Lerp (singleProtester.transform.position, singleProtesterDest, Time.fixedDeltaTime / 9);
+			singleProtester.transform.position = Vector3.Lerp (singleProtester.transform.position, singleProtesterDest, Time.fixedDeltaTime / 6);
 
-			Vector3 cam1Dest = singleProtesterDest;
-			openingCam1.transform.position = Vector3.Lerp (openingCam1.transform.position, cam1Dest, Time.fixedDeltaTime / 12);
+			openingCam1.transform.position = Vector3.Lerp (openingCam1.transform.position, singleProtesterDest, Time.fixedDeltaTime / 8);
 		}
 
 		if (timer > 15.5) {
@@ -91,7 +97,7 @@ public class RevisedOpeningScene : MonoBehaviour {
 			canvas.alpha = 0.4f;
 
 			Vector3 cam3destination = new Vector3 (-15, openingCam3.transform.position.y, openingCam3.transform.position.z);
-			openingCam3.transform.position = Vector3.Lerp (openingCam3.transform.position, cam3destination, (Time.fixedDeltaTime / 8));
+			openingCam3.transform.position = Vector3.Lerp (openingCam3.transform.position, cam3destination, (Time.fixedDeltaTime / 5));
 		}
 			
 
@@ -103,16 +109,20 @@ public class RevisedOpeningScene : MonoBehaviour {
 
 		//Qaddafi speaks
 		if (timer > 32.4) {
-			canvas.alpha = 0.4f;
 //			NearestHexFinder.allInstantiated = true;
 			openingCam4.enabled = true;
 			openingCam3.enabled = false;
 			openingProtestersEgypt.SetActive (false);
+			openingRubbleEgypt.SetActive (false);
+			openingRubbleLibya.SetActive (true);
 			openingProtestersLibya.SetActive (true);
 			openingEnemiesLibya.SetActive (true);
 
-			openingCam4.transform.LookAt(new Vector3(0, 1, -25));
-			openingCam4.transform.position = Vector3.Lerp (openingCam4.transform.position, new Vector3(-35, openingCam4.transform.position.y, openingCam4.transform.position.z), (Time.fixedDeltaTime / 12));
+			canvas.alpha = 0.4f;
+
+
+//			openingCam4.transform.LookAt(new Vector3(-20, 0, -7));
+			openingCam4.transform.position = Vector3.Lerp (openingCam4.transform.position, new Vector3(1, openingCam4.transform.position.y, openingCam4.transform.position.z), (Time.fixedDeltaTime / 12));
 		}
 
 		//Qaddafi stops
