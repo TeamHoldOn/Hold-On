@@ -54,12 +54,14 @@ public class UIManager : MonoBehaviour {
 			isPaused = true;
 			Time.timeScale = 0;
 			pauseCanvas.SetActive (true);
+            AudioListener.pause = true;
 		}
 
 		if ((pauseToggleOn == false) & (isPaused == true)) {
 			isPaused = false;
 			Time.timeScale = 1;
 			pauseCanvas.SetActive (false);
+            AudioListener.pause = false;
 		}
 	}
 
