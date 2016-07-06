@@ -9,6 +9,7 @@ public class RevisedOpeningScene : MonoBehaviour {
 	public Camera openingCam2;
 	public Camera openingCam3;
 	public Camera openingCam4;
+	public Camera openingCam5;
 
 	public GameObject burningMan;
 	public GameObject singleProtester;
@@ -23,6 +24,7 @@ public class RevisedOpeningScene : MonoBehaviour {
 	public GameObject openingProtestersSyria;
 	public GameObject openingEnemiesSyria;
 
+	public Light protesterLights;
 
 
 	public CanvasGroup canvas;
@@ -32,6 +34,7 @@ public class RevisedOpeningScene : MonoBehaviour {
 		openingCam2.enabled = false;
 		openingCam3.enabled = false;
 		openingCam4.enabled = false;
+		openingCam5.enabled = false;
 
 	}
 
@@ -42,19 +45,22 @@ public class RevisedOpeningScene : MonoBehaviour {
 		openingCam1.transform.LookAt (burningMan.transform.position);
 		openingCam1.transform.position = Vector3.Lerp (openingCam1.transform.position, burningMan.transform.position, Time.fixedDeltaTime / 8);
 
-		if (timer > 6) {
+		if (timer > 6 & timer <= 8.5) {
 			HP health = burningMan.GetComponent<HP>();
 			health.hitpoints = 0;
 		}
 
-		if (timer > 8.5) {
+		if (timer > 8.5 & timer <= 10) {
 			canvas.alpha = 1f;
 			openingRubbleSidiBouzid.SetActive (false);
 		}
 
 		//"Ben Ali fled"
-		if (timer > 10) {
-			openingCam1.transform.position = new Vector3 (-10, 6, -29);
+		if (timer > 10 & timer <= 15.5) {
+			if (timer > 10 & timer <= 10.1) {	
+				openingCam1.transform.position = new Vector3 (-10, 6, -29);
+			}
+		
 			canvas.alpha = 0.4f;
 			singleProtester.SetActive (true);
 			openingRubbleTunisia.SetActive (true);
@@ -63,18 +69,20 @@ public class RevisedOpeningScene : MonoBehaviour {
 			Vector3 singleProtesterDest = new Vector3 (singleProtester.transform.position.x, singleProtester.transform.position.y, 0);
 			singleProtester.transform.position = Vector3.Lerp (singleProtester.transform.position, singleProtesterDest, Time.fixedDeltaTime / 6);
 
-			openingCam1.transform.position = Vector3.Lerp (openingCam1.transform.position, singleProtesterDest, Time.fixedDeltaTime / 8);
+			Vector3 cam1Dest = new Vector3 (openingCam1.transform.position.x, openingCam1.transform.position.y, 0);
+			openingCam1.transform.Translate (Vector3.up * Time.fixedDeltaTime * 2);
+//			openingCam1.transform.position = Vector3.Lerp (openingCam1.transform.position, cam1Dest, Time.fixedDeltaTime / 8);
 		}
 
-		if (timer > 15.5) {
+		if (timer > 15.5 & timer <= 17) {
+			Destroy (openingCam1);
 			canvas.alpha = 1;
 			singleProtester.SetActive (false);
 			openingRubbleTunisia.SetActive (false);
-
 		}
 
 		//"The people want to topple the regime"
-		if (timer > 17) {
+		if (timer > 17 & timer <= 21.5) {
 			openingProtestersEgypt.SetActive (true);
 			openingRubbleEgypt.SetActive (true);
 			openingCam2.enabled = true;
@@ -86,7 +94,7 @@ public class RevisedOpeningScene : MonoBehaviour {
 
 		}
 
-		if (timer > 21.5) {
+		if (timer > 21.5 & timer <= 23.3) {
 			canvas.alpha = 1;
 		}
 
@@ -94,6 +102,7 @@ public class RevisedOpeningScene : MonoBehaviour {
 		if (timer > 23.3) {
 			openingCam3.enabled = true;
 			openingCam2.enabled = false;
+			Destroy (openingCam2);
 			canvas.alpha = 0.4f;
 
 			Vector3 cam3destination = new Vector3 (-15, openingCam3.transform.position.y, openingCam3.transform.position.z);
@@ -102,16 +111,16 @@ public class RevisedOpeningScene : MonoBehaviour {
 			
 
 		//Omar Suleiman stops
-		if (timer > 29.9) {
+		if (timer > 29.9 & timer <= 32.4) {
 			canvas.alpha = 1;
-//			protesterGroup.GetComponentsInChildren<RigidbodyConstraints>();
 		}
 
 		//Qaddafi speaks
-		if (timer > 32.4) {
+		if (timer > 32.4 & timer <= 37.9) {
 //			NearestHexFinder.allInstantiated = true;
 			openingCam4.enabled = true;
 			openingCam3.enabled = false;
+			Destroy (openingCam3);
 			openingProtestersEgypt.SetActive (false);
 			openingRubbleEgypt.SetActive (false);
 			openingRubbleLibya.SetActive (true);
@@ -126,15 +135,33 @@ public class RevisedOpeningScene : MonoBehaviour {
 		}
 
 		//Qaddafi stops
-		if (timer > 37.9) {
+		if (timer > 37.9 & timer <= 40) {
 			canvas.alpha = 1;
+
 		}
 
 		//Bashar begins
 		if (timer > 40) {
+
+			openingRubbleLibya.SetActive (false);
+			openingProtestersLibya.SetActive (false);
+			openingEnemiesLibya.SetActive (false);
+
+			openingRubbleSyria.SetActive (true);
+			openingProtestersSyria.SetActive (true);
+			openingEnemiesSyria.SetActive (true);
+
+			openingCam5.enabled = true;
+			openingCam4.enabled = false;
+			Destroy (openingCam4);
 			canvas.alpha = 0.4f;
+
+			Vector3 lookAtPoint = new Vector3 (-10, 0, -20);
+			openingCam5.transform.LookAt (lookAtPoint);
+			openingCam5.transform.Translate (Vector3.right * Time.fixedDeltaTime);
 		}
-			
 
 	}
+
+
 }
