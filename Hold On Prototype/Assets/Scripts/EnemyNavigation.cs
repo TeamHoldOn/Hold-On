@@ -48,10 +48,10 @@ public class EnemyNavigation : MonoBehaviour {
 
 		//**DISCOVERED POST-BETA: for some reason, the following if statement makes it so that enemies ONLY chase the playe
 		//as opposed to the purpose described in the comment above. haven't been able to figure out the problem!
-//		if (foundFriendlies.Length <= 14) {
-//			GameObject[] foundPlayer = GameObject.FindGameObjectsWithTag ("Player");
-//			friendlies = foundFriendlies.Concat (foundPlayer).ToArray ();
-//		}
+		if (friendlies.Length <= 14) {
+			GameObject[] foundPlayer = GameObject.FindGameObjectsWithTag ("Player");
+			friendlies = friendlies.Concat (foundPlayer).ToArray ();
+		}
 			
         foreach (GameObject friendly in friendlies) {
 			float tempDistance = Vector3.Distance (enemyLocation, friendly.transform.position);

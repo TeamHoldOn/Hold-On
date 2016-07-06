@@ -19,13 +19,13 @@ public class RevisedOpeningScene : MonoBehaviour {
 	public GameObject openingRubbleLibya;
 	public GameObject openingRubbleSyria;
 	public GameObject openingProtestersEgypt;
+	public GameObject openingProtestersEgypt2;
 	public GameObject openingProtestersLibya;
 	public GameObject openingEnemiesLibya;
 	public GameObject openingProtestersSyria;
 	public GameObject openingEnemiesSyria;
 
-	public Light protesterLights;
-
+	public Light mainLight;
 
 	public CanvasGroup canvas;
 
@@ -45,6 +45,7 @@ public class RevisedOpeningScene : MonoBehaviour {
 		openingCam1.transform.position = Vector3.Lerp (openingCam1.transform.position, burningMan.transform.position, Time.fixedDeltaTime / 8);
 
 		if (timer > 6 & timer <= 8.5) {
+			canvas.alpha = 0;
 			HP health = burningMan.GetComponent<HP>();
 			health.hitpoints = 0;
 		}
@@ -59,8 +60,9 @@ public class RevisedOpeningScene : MonoBehaviour {
 			if (timer > 10 & timer <= 10.1) {	
 				openingCam1.transform.position = new Vector3 (-10, 6, -29);
 			}
-		
-			canvas.alpha = 0.4f;
+
+			mainLight.enabled = false;
+			canvas.alpha = 0f;
 			singleProtester.SetActive (true);
 			openingRubbleTunisia.SetActive (true);
 			openingCam1.transform.LookAt (singleProtester.transform.position);
@@ -86,7 +88,7 @@ public class RevisedOpeningScene : MonoBehaviour {
 			openingRubbleEgypt.SetActive (true);
 			openingCam2.enabled = true;
 			openingCam1.enabled = false;
-			canvas.alpha = 0.4f;
+			canvas.alpha = 0f;
 
 			Vector3 cam2Dest = new Vector3 (-15, 3, -15);
 			openingCam2.transform.position = Vector3.Lerp (openingCam2.transform.position, cam2Dest, Time.fixedDeltaTime / 8);
@@ -95,14 +97,17 @@ public class RevisedOpeningScene : MonoBehaviour {
 
 		if (timer > 21.5 & timer <= 23.3) {
 			canvas.alpha = 1;
+
 		}
 
 		//Omar Suleiman starts speaking; timer here accounts for that entire period, not subtitle changes
-		if (timer > 23.3) {
+		if (timer > 23.3 & timer <= 29.9) {
+			openingProtestersEgypt.SetActive (false);
+			openingProtestersEgypt2.SetActive (true);
 			openingCam3.enabled = true;
 			openingCam2.enabled = false;
 			Destroy (openingCam2);
-			canvas.alpha = 0.4f;
+			canvas.alpha = 0f;
 
 			Vector3 cam3destination = new Vector3 (-15, openingCam3.transform.position.y, openingCam3.transform.position.z);
 			openingCam3.transform.position = Vector3.Lerp (openingCam3.transform.position, cam3destination, (Time.fixedDeltaTime / 5));
@@ -116,17 +121,17 @@ public class RevisedOpeningScene : MonoBehaviour {
 
 		//Qaddafi speaks
 		if (timer > 32.4 & timer <= 37.9) {
-//			NearestHexFinder.allInstantiated = true;
+			mainLight.enabled = true;
 			openingCam4.enabled = true;
 			openingCam3.enabled = false;
 			Destroy (openingCam3);
-			openingProtestersEgypt.SetActive (false);
+			openingProtestersEgypt2.SetActive (false);
 			openingRubbleEgypt.SetActive (false);
 			openingRubbleLibya.SetActive (true);
 			openingProtestersLibya.SetActive (true);
 			openingEnemiesLibya.SetActive (true);
 
-			canvas.alpha = 0.4f;
+			canvas.alpha = 0f;
 
 
 //			openingCam4.transform.LookAt(new Vector3(-20, 0, -7));
@@ -141,7 +146,6 @@ public class RevisedOpeningScene : MonoBehaviour {
 
 		//Bashar begins
 		if (timer > 40) {
-
 			openingRubbleLibya.SetActive (false);
 			openingProtestersLibya.SetActive (false);
 			openingEnemiesLibya.SetActive (false);
@@ -153,7 +157,7 @@ public class RevisedOpeningScene : MonoBehaviour {
 			openingCam5.enabled = true;
 			openingCam4.enabled = false;
 			Destroy (openingCam4);
-			canvas.alpha = 0.4f;
+			canvas.alpha = 0f;
 
 			Vector3 lookAtPoint = new Vector3 (-10, 0, -20);
 			openingCam5.transform.LookAt (lookAtPoint);

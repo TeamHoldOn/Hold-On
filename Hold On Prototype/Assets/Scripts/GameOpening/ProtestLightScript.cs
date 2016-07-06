@@ -16,9 +16,8 @@ public class ProtestLightScript : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 				
-		intensityRandomizer = Random.Range (0.5f, 3.5f);
+		intensityRandomizer = Random.Range (1f, 2.5f);
 		protestLight.intensity = intensityRandomizer;
-
 
 	}
 //
