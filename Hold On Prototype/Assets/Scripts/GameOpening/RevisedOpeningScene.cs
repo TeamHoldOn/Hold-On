@@ -35,7 +35,6 @@ public class RevisedOpeningScene : MonoBehaviour {
 		openingCam3.enabled = false;
 		openingCam4.enabled = false;
 		openingCam5.enabled = false;
-
 	}
 
 	void FixedUpdate () {
@@ -70,7 +69,7 @@ public class RevisedOpeningScene : MonoBehaviour {
 			singleProtester.transform.position = Vector3.Lerp (singleProtester.transform.position, singleProtesterDest, Time.fixedDeltaTime / 6);
 
 			Vector3 cam1Dest = new Vector3 (openingCam1.transform.position.x, openingCam1.transform.position.y, 0);
-			openingCam1.transform.Translate (Vector3.up * Time.fixedDeltaTime * 2);
+//			openingCam1.transform.Translate (Vector3.up * Time.fixedDeltaTime * 2);
 //			openingCam1.transform.position = Vector3.Lerp (openingCam1.transform.position, cam1Dest, Time.fixedDeltaTime / 8);
 		}
 
