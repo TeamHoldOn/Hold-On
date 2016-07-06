@@ -45,9 +45,9 @@ public class EnemyNavigation : MonoBehaviour {
 		GameObject[] friendlies = foundFriendlies.Concat(foundProtesters).ToArray();
 
 		//once the number of friendlies drops, the player will be added to the target list
-		if (foundFriendlies.Length <= 14) {
+		if (friendlies.Length <= 14) {
 			GameObject[] foundPlayer = GameObject.FindGameObjectsWithTag ("Player");
-			friendlies = foundFriendlies.Concat (foundPlayer).ToArray ();
+			friendlies = friendlies.Concat (foundPlayer).ToArray ();
 		}
 			
         foreach (GameObject friendly in friendlies) {
