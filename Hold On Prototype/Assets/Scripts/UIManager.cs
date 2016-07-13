@@ -9,6 +9,7 @@ public class UIManager : MonoBehaviour {
 	bool pauseToggleOn = false;
 	bool isPaused = false;
 	int verticalInput = 0;
+    GameObject gameState;
 
 	void Update(){
 		
@@ -27,9 +28,11 @@ public class UIManager : MonoBehaviour {
 
 	//the following two functions are attached to buttons on the PausePanel
 	public void RestartGame(){
-		MainMenu.playedOnce = true;
-		SceneManager.LoadScene (1);
-	}
+        gameState = GameObject.Find("GameState");
+        DestroyObject(gameState);
+        MainMenu.playedOnce = true;
+        SceneManager.LoadScene(1);
+    }
 
 	public void GoToMainMenu(){
 		SceneManager.LoadScene (0);
