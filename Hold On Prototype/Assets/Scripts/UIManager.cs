@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Collections;
+using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour {
 
@@ -40,7 +41,7 @@ public class UIManager : MonoBehaviour {
 		//I constructed it this way because simply having Unity read the same mouse button while only 
 		//checking the isPaused bool didn't work for reasons I don't understand.
 
-		if (Input.GetMouseButton(0) | Input.GetButton("PS4OptionsButton")){
+		if (Input.GetKeyDown("escape") | Input.GetButton("PS4OptionsButton")){
 			if (isPaused == false){
 				pauseToggleOn = true;
 			}
