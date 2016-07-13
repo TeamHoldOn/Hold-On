@@ -18,7 +18,7 @@ public class PlayerParticlePlay : MonoBehaviour {
 
 		// Update is called once per frame
 		void Update () {
-			checkCurrentHealth = hp.currentHealth;
+			checkCurrentHealth = this.hp.currentHealth;
 
 			if (checkCurrentHealth < 2) {
 				ParticleSystem ps = GetComponent<ParticleSystem> ();

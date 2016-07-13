@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameStateManager : MonoBehaviour
 {
@@ -17,6 +18,8 @@ public class GameStateManager : MonoBehaviour
     public GameObject player;
     public GameObject enemySpawner;
     public GameObject protesters;
+    public RawImage opening;
+    public GameObject openingVideo;
 
     void Start()
     {   
@@ -34,6 +37,13 @@ public class GameStateManager : MonoBehaviour
             protestSceneManager.GetComponent<ProtestScene>().enabled = false;
             protestCamera.GetComponent<AudioSource>().enabled = false;
             protestCamera.GetComponent<chant>().enabled = false;
+            opening.GetComponent<AudioSource>().enabled = false;
+            AudioListener.pause = false;
+            openingVideo.GetComponent<PlayMovie>().enabled = false;
+
+        }
+        else {
+            Invoke("Begin",50);
         }
     }
     void Update()
@@ -69,5 +79,17 @@ public class GameStateManager : MonoBehaviour
         Debug.Log("Loaded Scene");
      //ResetEndVariables();
      
+    }
+    void Begin()
+    {
+        protestCamera.enabled = false;
+        protestSceneManager.SetActive(false);
+        player.GetComponent<FirstEnemySpawn>().enabled = false;
+        enemySpawner.SetActive(true);
+        protesters.SetActive(true);
+        canvas.GetComponent<AudioSource>().enabled = false;
+        protestSceneManager.GetComponent<ProtestScene>().enabled = false;
+        protestCamera.GetComponent<AudioSource>().enabled = false;
+        protestCamera.GetComponent<chant>().enabled = false;
     }
 }
