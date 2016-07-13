@@ -31,6 +31,7 @@ public class MainMenu : MonoBehaviour {
         DestroyObject(gameState);
         playedOnce = true;
         SceneManager.LoadScene(1);
+     
     }
     public void ExitGame(){
 	
