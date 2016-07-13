@@ -32,6 +32,7 @@ public class UIManager : MonoBehaviour {
         DestroyObject(gameState);
         MainMenu.playedOnce = true;
         SceneManager.LoadScene(1);
+        Time.timeScale = 1;
     }
 
 	public void GoToMainMenu(){
